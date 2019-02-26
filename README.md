@@ -1,7 +1,7 @@
 # Immersion_projects
 
 ## TEAM MEMBRES :
-* Name: Heba Kaddouh [Hebak93](https://github.com/Hebak93)
+* Name: Heba Kaddouh [Hebakaddouh](https://github.com/Hebakaddouh)
   Email : heba.kaddouh@gmail.com
 	  
 * Name: Mohamed Ben Saad [Mohaabenz](https://github.com/Mohaabenz)

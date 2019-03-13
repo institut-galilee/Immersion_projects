@@ -13,9 +13,15 @@
 
 // Stores frequency read by the photodiodes
 int led = 13;
+int whiteFrequency = 0
 int redFrequency = 0;
 int greenFrequency = 0;
 int blueFrequency = 0;
+
+int white = 0;
+int blue = 0;
+int red = 0;
+int green = 0;
 
 void setup() {
   // Setting the outputs
@@ -35,7 +41,9 @@ void setup() {
 
   // Begins serial communication
   Serial.begin(9600);
+
 }
+
 void loop() {
   // Setting RED (R) filtered photodiodes to be read
   digitalWrite(S2, LOW);
@@ -43,7 +51,7 @@ void loop() {
 
   // Reading the output frequency
   redFrequency = pulseIn(sensorOut, LOW);
-
+  //red = map(redFrequency,W1 ,B1 ,255 ,0);
   // Printing the RED (R) value
   Serial.print("R = ");
   Serial.print(redFrequency);
@@ -55,6 +63,7 @@ void loop() {
 
   // Reading the output frequency
   greenFrequency = pulseIn(sensorOut, LOW);
+  //green = map(redFrequency,W2 ,B2 ,255 ,0);
 
   // Printing the GREEN (G) value
   Serial.print(" G = ");
@@ -67,7 +76,8 @@ void loop() {
 
   // Reading the output frequency
   blueFrequency = pulseIn(sensorOut, LOW);
-
+  //blue = map(redFrequency, W3 ,B3 ,255 ,0);
+  blue = map(redFrequency, 500 ,B3 ,255 ,0);
   // Printing the BLUE (B) value
   Serial.print(" B = ");
   Serial.println(blueFrequency);

@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView devicesList;
     private Spinner menu;
     private Button recherche;
+    private Button connexion;
 
     private boolean mScanning;
     private Handler handler;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         menu = findViewById(R.id.menu);
        // devicesList = findViewById(R.id.devicesList);
         recherche = findViewById(R.id.recherche);
+        connexion = findViewById(R.id.button);
 
         listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         menu.setAdapter(listAdapter);
@@ -72,8 +74,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
         checkCoarseLocationPermission();
+
+        connexion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ActivityMain2 = new Intent(getApplicationContext(), ActivityMain2.class);
+                startActivity(ActivityMain2);
+                finish();
+            }
+        });
+
     }
 
     @Override

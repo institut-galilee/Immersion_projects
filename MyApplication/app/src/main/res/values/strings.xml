@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="recherche">Rechercher des périphériques ...</string>
+    <string name="rech">rechercher</string>
 </resources>

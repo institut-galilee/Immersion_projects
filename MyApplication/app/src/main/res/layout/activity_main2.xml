@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityMain2">
+
+    <SeekBar
+        android:id="@+id/rouge"
+        android:layout_width="218dp"
+        android:layout_height="26dp"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="289dp"
+        android:thumb="@drawable/barre_rouge"
+        />
+
+    <SeekBar
+        android:id="@+id/vert"
+
+        android:layout_width="218dp"
+        android:layout_height="26dp"
+
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="375dp" />
+
+    <SeekBar
+        android:id="@+id/bleu"
+        android:layout_width="218dp"
+        android:layout_height="26dp"
+        android:max="12"
+        android:progress="4"
+        android:thumb="@color/red"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="463dp" />
+
+</android.support.constraint.ConstraintLayout>

@@ -12,7 +12,10 @@ int g_count = 0;
 int g_array[3];
 int g_flag = 0;
 float g_SF[3];
-
+int red = 0;
+int grn = 0;
+int blu = 0;
+String color = "";
 void TSC_Init()
 {
   pinMode(S0, OUTPUT);
@@ -39,6 +42,15 @@ void TSC_Count()
 {
   g_count ++;
 }
+
+void TSC_WB(int Level0, int Level1) // Balance des blancs
+{
+  g_count = 0;
+  g_flag ++;
+  TSC_FilterColor(Level0, Level1);
+  Timer1.setPeriod(1000000);
+}
+
 void TSC_Callback()
 {
   switch (g_flag)
@@ -73,13 +85,7 @@ void TSC_Callback()
 
   }
 }
-void TSC_WB(int Level0, int Level1) // Balance des blancs
-{
-  g_count = 0;
-  g_flag ++;
-  TSC_FilterColor(Level0, Level1);
-  Timer1.setPeriod(1000000);
-}
+
 
 void setup() {
   TSC_Init();
@@ -101,8 +107,23 @@ void setup() {
 void loop() {
   g_flag = 0;
   for (int i = 0; i < 3; i++){
+    if (i==0)
+      red = g_array[i] * g_SF[i];
+    if (i==1)
+      grn = g_array[i] * g_SF[i];
+    if (i==2)
+      blu =  g_array[i] * g_SF[i];
     Serial.println(int(g_array[i] * g_SF[i]));
   }
-
+  if (red > 225 && red < 260 && grn > 225 && grn < 260 && blu > 225 && blu < 260) color = "WHITE";
+  else if (red >= 0 && red <= 10 && grn >= 0 && grn <= 10 && blu >= 0 && blu <= 10) color = "BLACK";
+  else if (red > 160 && red < 260 && grn >= 0 && grn <= 50 && blu >= 0 && blu <= 50) color = "RED";
+  else if (red >=0 && red <= 70 && grn >= 142 && grn < 260 && blu >= 0 && blu < 60) color = "GREEN";
+  else if (red >= 0 && red <= 20 && grn >=0 && grn <= 70 && blu >= 150 && blu <= 260) color = "BLUE";
+  else if (red >= 220 && red <= 260 && grn >= 170 && grn <= 260 && blu >=0 && blu <= 100) color = "YELLOW";
+  else if (red >= 0 && red <= 80 && grn >= 170 && grn <= 260 && blu >=180 && blu <= 260) color = "CYAN";
+  else if (red >= 170 && red <= 260 && grn >= 0 && grn <= 100 && blu >=180 && blu <= 260) color = "MAGENTA";
+  else  color = "NO_COLOR";
+  Serial.println(color);
   delay(4000);
 }

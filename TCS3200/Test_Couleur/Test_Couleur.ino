@@ -5,15 +5,20 @@
 *********/
 
 // TCS230 or TCS3200 pins wiring to Arduino
-#define S0 4
+#define S0 6
 #define S1 5
-#define S2 7
-#define S3 6
-#define sensorOut 8
+#define S2 4
+#define S3 3
+#define sensorOut 2
 
 // Stores frequency read by the photodiodes
 int led = 13;
-int whiteFrequency = 0
+/*int W1 = 0;
+int W2 = 0;
+int W3 = 0;
+int B1 = 0;
+int B2 = 0;
+int B3 = 0;*/
 int redFrequency = 0;
 int greenFrequency = 0;
 int blueFrequency = 0;
@@ -51,7 +56,7 @@ void loop() {
 
   // Reading the output frequency
   redFrequency = pulseIn(sensorOut, LOW);
-  //red = map(redFrequency,W1 ,B1 ,255 ,0);
+  //red = map(redFrequency,607 ,B1 ,255 ,0);
   // Printing the RED (R) value
   Serial.print("R = ");
   Serial.print(redFrequency);
@@ -77,7 +82,6 @@ void loop() {
   // Reading the output frequency
   blueFrequency = pulseIn(sensorOut, LOW);
   //blue = map(redFrequency, W3 ,B3 ,255 ,0);
-  blue = map(redFrequency, 500 ,B3 ,255 ,0);
   // Printing the BLUE (B) value
   Serial.print(" B = ");
   Serial.println(blueFrequency);

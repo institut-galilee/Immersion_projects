@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 {
                     Toast.makeText(this, "Recherche d'appareils...", Toast.LENGTH_SHORT).show();
                 } else{
-                    Toast.makeText(this, "Bluetooth est sactivé", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Bluetooth est activé", Toast.LENGTH_SHORT).show();
 
                 }
             }else{

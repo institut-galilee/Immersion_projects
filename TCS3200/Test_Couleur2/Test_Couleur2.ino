@@ -117,15 +117,15 @@ void loop() {
   }
   if (red > 225 && red < 260 && grn > 225 && grn < 260 && blu > 225 && blu < 260) color = "WHITE";
   else if (red >= 0 && red <= 15 && grn >= 0 && grn <= 15 && blu >= 0 && blu <= 15) color = "BLACK";
-  else if (red > 190 && red < 260 && grn >= 35 && grn <= 45 && blu >= 45 && blu <= 55) color = "RED";
-  else if (red >=75 && red <= 85 && grn >= 160 && grn < 260 && blu >= 60 && blu < 70) color = "GREEN";
-  else if (red >= 20 && red <= 30 && grn >=75 && grn <= 85 && blu >= 180 && blu <= 260) color = "BLUE";
-  else if (red >= 240 && red <= 255 && grn >= 195 && grn <= 210 && blu >=95 && blu <= 105) color = "YELLOW";
-  else if (red >= 85 && red <= 95 && grn >= 220 && grn <= 230 && blu >=120 && blu <= 230) color = "CYAN";
-  else if (red >= 195 && red <= 205 && grn >= 105 && grn <= 115 && blu >=215 && blu <= 230) color = "MAGENTA";
-  else if (red >= 205 && red <= 215 && grn >= 70 && grn <= 85 && blu >=65 && blu <= 80) color = "ORANGE";
-  else if (red >= 40 && red <= 50 && grn >= 25 && grn <= 35 && blu >=45 && blu <= 55) color = "PURPLE";
-  else if (red >= 20 && red <= 35 && grn >= 45 && grn <= 55 && blu >=45 && blu <= 55) color = "TURQUOISE";
+  else if (red > 160 && red < 260 && grn >= 0 && grn <= 45 && blu >= 0 && blu <= 55) color = "RED";
+  else if (red >=0 && red <= 85 && grn >= 155 && grn < 260 && blu >= 0 && blu < 80) color = "GREEN";
+  else if (red >= 0 && red <= 30 && grn >=0 && grn <= 85 && blu >= 145 && blu <= 260) color = "BLUE";
+  else if (red >= 175 && red <= 255 && grn >= 175 && grn <= 250 && blu >=85 && blu <= 115) color = "YELLOW";
+  else if (red >= 75 && red <= 105 && grn >= 200 && grn <= 230 && blu >=120 && blu <= 230) color = "CYAN";
+  else if (red >= 160 && red <= 215 && grn >= 80 && grn <= 115 && blu >=175 && blu <= 230) color = "MAGENTA";
+  else if (red >= 170 && red <= 215 && grn >= 50 && grn <= 95 && blu >=40 && blu <= 80) color = "ORANGE";
+  else if (red >= 40 && red <= 60 && grn >= 25 && grn <= 55 && blu >=40 && blu <= 60) color = "PURPLE";
+  else if (red >= 20 && red <= 35 && grn >= 45 && grn <= 60 && blu >=35 && blu <= 60) color = "TURQUOISE";
 
   else  color = "NO_COLOR";
   Serial.println(color);

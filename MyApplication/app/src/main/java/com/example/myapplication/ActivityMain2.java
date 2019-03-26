@@ -15,12 +15,12 @@ import android.widget.TextView;
 
 public class ActivityMain2 extends AppCompatActivity {
 
-    //Valeur du rouge, vert et bleu respectivement
-    private int r, v, b;
-    //Jauges pour la gestion du rouge, vert et bleu respactivement
-    private SeekBar sr, sv, sb;
-    //Affichage du rouge, vert et bleu respectivement
-    private TextView tr, tv, tb;
+    //Valeur du rouge, vert, bleu et luminosité respectivement
+    private int r, v, b, l;
+    //Jauges pour la gestion du rouge, vert, bleu et de la luminosité respactivement
+    private SeekBar sr, sv, sb, sl;
+    //Affichage du rouge, vert, bleu et luminosité respectivement
+    private TextView tr, tv, tb, tl;
     //Menu des themes
     private Spinner themes;
     private Button retour;
@@ -41,13 +41,16 @@ public class ActivityMain2 extends AppCompatActivity {
         sr = (SeekBar) findViewById(R.id.rouge);
         sv = (SeekBar) findViewById(R.id.vert);
         sb = (SeekBar) findViewById(R.id.bleu);
+        sl = (SeekBar) findViewById(R.id.luminosite);
 
         tr = (TextView) findViewById(R.id.tr);
         tv = (TextView) findViewById(R.id.tv);
         tb = (TextView) findViewById(R.id.tb);
+        tb = (TextView) findViewById(R.id.tl);
         tr.setText(""+r+"");
         tv.setText(""+v+"");
         tb.setText(""+b+"");
+        tl.setText(""+l+"");
 
         retour = (Button) findViewById(R.id.retour);
 
@@ -125,6 +128,24 @@ public class ActivityMain2 extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 b = progress;
                 tb.setText(""+progress+"");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                l = progress;
+                tl.setText(""+progress+"");
             }
 
             @Override

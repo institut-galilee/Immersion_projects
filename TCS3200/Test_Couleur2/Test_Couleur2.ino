@@ -1,3 +1,4 @@
+#include <Adafruit_NeoPixel.h>
 #include <TimerOne.h>
 
 #define S0 6
@@ -6,6 +7,7 @@
 #define S3 3
 #define OUT 2
 #define LED 13
+#define BLED 12
 
 
 int g_count = 0;
@@ -16,6 +18,10 @@ int red = 0;
 int grn = 0;
 int blu = 0;
 String color = "";
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, BLED, NEO_GRB + NEO_KHZ800);
+
+
+
 void TSC_Init()
 {
   pinMode(S0, OUTPUT);
@@ -26,6 +32,9 @@ void TSC_Init()
   pinMode(LED, OUTPUT);
   digitalWrite(S0, LOW);
   digitalWrite(S1, HIGH);
+  strip.begin();
+  strip.show();
+  
 }
 
 void TSC_FilterColor(int Level01, int Level02)
@@ -48,7 +57,7 @@ void TSC_WB(int Level0, int Level1) // Balance des blancs
   g_count = 0;
   g_flag ++;
   TSC_FilterColor(Level0, Level1);
-  Timer1.setPeriod(1000000);
+  Timer1.setPeriod(4000000);
 }
 
 void TSC_Callback()
@@ -104,7 +113,9 @@ void setup() {
   Serial.println(g_SF[2]);
 }
 
+
 void loop() {
+  
   g_flag = 0;
   for (int i = 0; i < 3; i++){
     if (i==0)
@@ -115,6 +126,13 @@ void loop() {
       blu =  g_array[i] * g_SF[i];
     Serial.println(int(g_array[i] * g_SF[i]));
   }
+
+  for (int j = 0; j<60;j++)
+  {
+    strip.setPixelColor(j,red,grn,blu);
+  }
+  strip.show();
+  
   if (red > 225 && red < 260 && grn > 225 && grn < 260 && blu > 225 && blu < 260) color = "WHITE";
   else if (red >= 0 && red <= 15 && grn >= 0 && grn <= 15 && blu >= 0 && blu <= 15) color = "BLACK";
   else if (red > 160 && red < 260 && grn >= 0 && grn <= 45 && blu >= 0 && blu <= 55) color = "RED";

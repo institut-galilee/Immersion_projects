@@ -144,8 +144,8 @@ public class ActivityMain2 extends AppCompatActivity {
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent page2 = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(page2);
+                Intent MainActivity = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(MainActivity);
                 finish();
             }
         });

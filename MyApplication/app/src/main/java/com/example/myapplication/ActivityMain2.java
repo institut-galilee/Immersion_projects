@@ -58,6 +58,15 @@ public class ActivityMain2 extends AppCompatActivity {
                     case "Theme 2":
                         theme2();
                         break;
+                    case "Theme 3":
+                        theme3();
+                        break;
+                    case "Theme 4":
+                        theme4();
+                        break;
+                    case "Theme 5":
+                        theme5();
+                        break;
                 }
             }
 
@@ -144,6 +153,33 @@ public class ActivityMain2 extends AppCompatActivity {
         this.r = 112;
         this.v = 0;
         this.b = 255;
+        sr.setProgress(this.r);
+        sv.setProgress(this.v);
+        sb.setProgress(this.b);
+    }
+
+    public void theme3(){
+        this.r = 12;
+        this.v = 10;
+        this.b = 25;
+        sr.setProgress(this.r);
+        sv.setProgress(this.v);
+        sb.setProgress(this.b);
+    }
+
+    public void theme4(){
+        this.r = 200;
+        this.v = 218;
+        this.b = 255;
+        sr.setProgress(this.r);
+        sv.setProgress(this.v);
+        sb.setProgress(this.b);
+    }
+
+    public void theme5(){
+        this.r = 6;
+        this.v = 31;
+        this.b = 99;
         sr.setProgress(this.r);
         sv.setProgress(this.v);
         sb.setProgress(this.b);

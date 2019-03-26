@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private static final long SCAN_PERIOD = 10000;
     private static final int REQUEST_ENABLE_BT = 1;
     private static final int REQUEST_ACCESS_COARSE_LOCATION = 1;
+
+    private String address = null, name = null;
     private BluetoothAdapter bluetoothAdapter;
     private ArrayAdapter<String> listAdapter;
     private ListView devicesList;
@@ -54,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
        // devicesList = findViewById(R.id.devicesList);
         recherche = findViewById(R.id.recherche);
         connexion = findViewById(R.id.button);
+
+        //+
+        address = bluetoothAdapter.getAddress();
 
         listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         menu.setAdapter(listAdapter);

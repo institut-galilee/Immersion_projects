@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.Manifest;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ public class ActivityMain2 extends AppCompatActivity {
     private TextView tr, tv, tb;
     //Menu des themes
     private Spinner themes;
+    private Button retour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,8 @@ public class ActivityMain2 extends AppCompatActivity {
         tr.setText(""+r+"");
         tv.setText(""+v+"");
         tb.setText(""+b+"");
+
+        retour = (Button) findViewById(R.id.retour);
 
         themes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -127,6 +132,14 @@ public class ActivityMain2 extends AppCompatActivity {
         /*r = sr.getProgress();
         v = sv.getProgress();
         b = sb.getProgress()*/
+        retour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent page2 = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(page2);
+                finish();
+            }
+        });
 
 
     }

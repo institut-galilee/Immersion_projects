@@ -1,5 +1,9 @@
 #include <Adafruit_NeoPixel.h>
 #include <TCS3200.h>
+#include <SoftwareSerial.h>
+#define rxPin 7 // Broche 11 en tant que RX, à raccorder sur TX du HC-05
+#define txPin 8 // Broche 10 en tant que TX, à raccorder sur RX du HC-05
+SoftwareSerial mySerial(rxPin, txPin);
 #define LED 13
 #define BLED 12
 // CS ( S2, S3, OUT, S0, S1, LED )
@@ -48,10 +52,14 @@ void Init(){
 }
 
 void setup() {
+    pinMode(rxPin, INPUT);
+    pinMode(txPin, OUTPUT);
+    mySerial.begin(9600);
     Serial.begin(9600);
     CS.begin();
     CS.LEDON(false);
     strip.begin();
+    strip.setBrightness(50);
     Init();
     
     
@@ -59,13 +67,23 @@ void setup() {
  
 void loop() {
   
-  current = CS.readRGB();
-  CS.read( true );
-  CS.getRGB(&current);
-  
-  for (int j = 0; j<60;j++)
-  {
-    strip.setPixelColor(j,current.value[0],current.value[1],current.value[2]);
-  }
-  strip.show();
+    while(mySerial.available())
+    {
+      Serial.write(mySerial.read());
+      delay(200);
+    }
+    
+    while(Serial.available())
+    {
+      mySerial.write(Serial.read());
+    }
+    current = CS.readRGB();
+    //CS.read( true );
+    CS.getRGB(&current);
+    
+    for (int j = 0; j<60;j++)
+    {
+      strip.setPixelColor(j,current.value[0],current.value[1],current.value[2]);
+    }
+    strip.show();
 }  

@@ -93,19 +93,19 @@ public class ActivityMain2 extends AppCompatActivity {
             if (btSocket!=null)
             {
                 if(a==1) {
-                    couleurs = "r" + r1 + "v" + v1 + "b" + b1 + ";";
+                    couleurs = r1;
                     for (char e : couleurs.toCharArray()) {
                         btSocket.getOutputStream().write(e);
                     }
                 }
                 if(a==2) {
-                    couleurs = "r" + r1 + "v" + v1 + "b" + b1 + ";";
+                    couleurs = v1;
                     for (char e : couleurs.toCharArray()) {
                         btSocket.getOutputStream().write(e);
                     }
                 }
                 if(a==3) {
-                    couleurs = "r" + r1 + "v" + v1 + "b" + b1 + ";";
+                    couleurs = b1;
                     for (char e : couleurs.toCharArray()) {
                         btSocket.getOutputStream().write(e);
                     }
@@ -216,7 +216,7 @@ public class ActivityMain2 extends AppCompatActivity {
         sr.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                r1=""+progress;
+                r1="r"+progress;
                 r = progress;
                 tr.setText(""+progress+"");
                 envoiCouleurs(1);
@@ -236,7 +236,7 @@ public class ActivityMain2 extends AppCompatActivity {
         sv.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                v1=""+progress;
+                v1="v"+progress;
                 v = progress;
                 tv.setText(""+progress+"");
                 envoiCouleurs(2);
@@ -256,7 +256,7 @@ public class ActivityMain2 extends AppCompatActivity {
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                b1=""+progress;
+                b1="b"+progress;
                 b = progress;
                 tb.setText(""+progress+"");
                 envoiCouleurs(3);

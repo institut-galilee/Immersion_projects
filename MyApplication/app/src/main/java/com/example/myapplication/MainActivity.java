@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private Spinner menu;
     private Button recherche;
     private Button connexion;
+    private Button calibrage;
 
     private boolean mScanning;
     private Handler handler;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         // devicesList = findViewById(R.id.devicesList);
         recherche = findViewById(R.id.recherche);
         connexion = findViewById(R.id.button);
+        calibrage = findViewById(R.id.calibrage);
 
         //+
         address = bluetoothAdapter.getAddress();
@@ -110,6 +112,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        calibrage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ActivityMain3 = new Intent(getApplicationContext(), ActivityMain3.class);
+                startActivity(ActivityMain3);
+                finish();
+            }
+        });
     }
 
     @Override
@@ -192,6 +202,8 @@ public class MainActivity extends AppCompatActivity {
             } else if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
                 recherche.setText("En cours");
             }
+
+
         }
     };
 }

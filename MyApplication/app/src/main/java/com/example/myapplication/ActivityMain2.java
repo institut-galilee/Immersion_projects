@@ -28,12 +28,17 @@ public class ActivityMain2 extends AppCompatActivity {
     private SeekBar sr, sv, sb, sl;
     //Affichage du rouge, vert, bleu et luminosité respectivement
     private TextView tr, tv, tb, tl;
+    //
+
 
     String r1, v1, b1, couleurs;
     //Menu des themes
     private Spinner themes;
     private Button retour;
+    private Button allumer;
 
+
+    char etat = 'E';
     String address = null , name=null;
     BluetoothAdapter myBluetooth = null;
     BluetoothSocket btSocket = null;
@@ -99,6 +104,28 @@ public class ActivityMain2 extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void onOff()
+    {
+        try
+        {
+            if (btSocket!=null)
+            {
+                if (etat == 'E' ) {
+                    etat = 'A';
+                }
+                if (etat == 'A' ) {
+                    etat = 'E';
+                }
+                btSocket.getOutputStream().write(etat);
+            }
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -260,6 +287,13 @@ public class ActivityMain2 extends AppCompatActivity {
                 Intent MainActivity = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(MainActivity);
                 finish();
+            }
+        });
+
+        allumer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOff();
             }
         });
 

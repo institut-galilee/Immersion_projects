@@ -38,7 +38,7 @@ public class ActivityMain2 extends AppCompatActivity {
     private Button allumer;
 
 
-    char etat = 'A';
+    String etat = "A";
     String address = null , name=null;
     BluetoothAdapter myBluetooth = null;
     BluetoothSocket btSocket = null;
@@ -125,13 +125,13 @@ public class ActivityMain2 extends AppCompatActivity {
         {
             if (btSocket!=null)
             {
-                if (etat == 'E' ) {
-                    etat = 'A';
+                if (etat == "E") {
+                    etat = "A";
                 }
-                if (etat == 'A' ) {
-                    etat = 'E';
+                if (etat == "A" ) {
+                    etat = "E";
                 }
-                btSocket.getOutputStream().write(etat);
+                btSocket.getOutputStream().write(etat.getBytes());
             }
         }
         catch (Exception e)
@@ -217,7 +217,7 @@ public class ActivityMain2 extends AppCompatActivity {
         sr.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                r1="r"+progress;
+                r1="r"+progress+";";
                 r = progress;
                 tr.setText(""+progress+"");
                 envoiCouleurs(1);
@@ -237,7 +237,7 @@ public class ActivityMain2 extends AppCompatActivity {
         sv.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                v1="v"+progress;
+                v1="v"+progress+";";
                 v = progress;
                 tv.setText(""+progress+"");
                 envoiCouleurs(2);
@@ -257,7 +257,7 @@ public class ActivityMain2 extends AppCompatActivity {
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                b1="b"+progress;
+                b1="b"+progress+";";
                 b = progress;
                 tb.setText(""+progress+"");
                 envoiCouleurs(3);

@@ -86,15 +86,29 @@ public class ActivityMain2 extends AppCompatActivity {
     }
 
 
-    private void envoiCouleurs()
+    private void envoiCouleurs(int a)
     {
         try
         {
             if (btSocket!=null)
             {
-                couleurs = "r"+r1+"v"+v1+"b"+b1+";";
-                for (char e:couleurs.toCharArray()) {
-                    btSocket.getOutputStream().write(e);
+                if(a==1) {
+                    couleurs = "r" + r1 + "v" + v1 + "b" + b1 + ";";
+                    for (char e : couleurs.toCharArray()) {
+                        btSocket.getOutputStream().write(e);
+                    }
+                }
+                if(a==2) {
+                    couleurs = "r" + r1 + "v" + v1 + "b" + b1 + ";";
+                    for (char e : couleurs.toCharArray()) {
+                        btSocket.getOutputStream().write(e);
+                    }
+                }
+                if(a==3) {
+                    couleurs = "r" + r1 + "v" + v1 + "b" + b1 + ";";
+                    for (char e : couleurs.toCharArray()) {
+                        btSocket.getOutputStream().write(e);
+                    }
                 }
                // btSocket.getOutputStream().write(this.r);
             }
@@ -170,24 +184,23 @@ public class ActivityMain2 extends AppCompatActivity {
                 switch (s){
                     case "Theme 1":
                         theme1();
-                        envoiCouleurs();
                         break;
                     case "Theme 2":
                         theme2();
-                        envoiCouleurs();
                         break;
                     case "Theme 3":
                         theme3();
-                        envoiCouleurs();
                         break;
                     case "Theme 4":
                         theme4();
-                        envoiCouleurs();
                         break;
                     case "Theme 5":
                         theme5();
-                        envoiCouleurs();
                         break;
+                }
+                for (int i=1; i<=3; i++)
+                {
+                    envoiCouleurs(i);
                 }
             }
 
@@ -206,7 +219,7 @@ public class ActivityMain2 extends AppCompatActivity {
                 r1=""+progress;
                 r = progress;
                 tr.setText(""+progress+"");
-                envoiCouleurs();
+                envoiCouleurs(1);
             }
 
             @Override
@@ -226,7 +239,7 @@ public class ActivityMain2 extends AppCompatActivity {
                 v1=""+progress;
                 v = progress;
                 tv.setText(""+progress+"");
-                envoiCouleurs();
+                envoiCouleurs(2);
             }
 
             @Override
@@ -246,7 +259,7 @@ public class ActivityMain2 extends AppCompatActivity {
                 b1=""+progress;
                 b = progress;
                 tb.setText(""+progress+"");
-                envoiCouleurs();
+                envoiCouleurs(3);
             }
 
             @Override

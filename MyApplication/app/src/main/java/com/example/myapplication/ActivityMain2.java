@@ -38,7 +38,7 @@ public class ActivityMain2 extends AppCompatActivity {
     private Button allumer;
 
 
-    char etat = 'E';
+    char etat = 'A';
     String address = null , name=null;
     BluetoothAdapter myBluetooth = null;
     BluetoothSocket btSocket = null;
@@ -175,6 +175,7 @@ public class ActivityMain2 extends AppCompatActivity {
         tl.setText(""+l+"");
 
         retour = (Button) findViewById(R.id.retour);
+        allumer = findViewById(R.id.allumer);
 
         themes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

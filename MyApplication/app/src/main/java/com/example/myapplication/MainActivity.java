@@ -82,11 +82,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent ActivityMain3 = new Intent(getApplicationContext(), ActivityMain3.class);
                 startActivity(ActivityMain3);
-              /*  try {
+                try {
                     bSocket.getOutputStream().write("A".getBytes());
                 } catch (IOException e) {
                     e.printStackTrace();
-                }*/
+                }
                 finish();
             }
         });
@@ -98,11 +98,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent ActivityMain2 = new Intent(getApplicationContext(), ActivityMain2.class);
                 startActivity(ActivityMain2);
-               /* try {
+               try {
                     bSocket.getOutputStream().write("A".getBytes());
                 } catch (IOException e) {
                     e.printStackTrace();
-                }*/
+                }
                 finish();
             }
         });

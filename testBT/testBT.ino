@@ -90,6 +90,12 @@ void loop()
   while (Serial.available())
   {
     buf = (char)Serial.read();
+    if (buf == 'A') {
+      digitalWrite(12, HIGH);
+    }
+    if (buf == 'E') {
+       digitalWrite(12, LOW);
+    }
     if (buf == 'r') {
       i = 0;
       n = 2;
@@ -122,13 +128,7 @@ void loop()
     }
     if (charToInt(buf) != -1) {
       b = charToInt(buf);
-      /*Serial.println(buf);
-      Serial.println("B char to int result");
-      Serial.println(b);*/
-      //Serial.println(b*coef(n));
       rvb[i] += b *coef(n);
-      /*Serial.println("RVB i");
-      Serial.println(rvb[i]);*/
       //delay(10);
       n--;
     }

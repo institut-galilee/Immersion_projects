@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button calibrage;
     private Button controler;
+    private Button immersion;
 
 
     BluetoothSocket bSocket = null;
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         calibrage = findViewById(R.id.calibre);
         controler = findViewById(R.id.control);
+        immersion.findViewById(R.id.immersion);
 
 
         calibrage.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +106,17 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 finish();
+            }
+        });
+
+        immersion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    bSocket.getOutputStream().write("I".getBytes());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

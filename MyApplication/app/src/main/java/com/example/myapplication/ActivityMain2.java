@@ -198,6 +198,9 @@ public class ActivityMain2 extends AppCompatActivity {
                     case "Theme 5":
                         theme5();
                         break;
+                    case "Guirelande":
+                        Guirelande();
+                        break;
                 }
                 for (int i=1; i<=3; i++)
                 {
@@ -372,6 +375,14 @@ public class ActivityMain2 extends AppCompatActivity {
         sr.setProgress(this.r);
         sv.setProgress(this.v);
         sb.setProgress(this.b);
+    }
+
+    public void Guirelande(){
+        try {
+            btSocket.getOutputStream().write("G".getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

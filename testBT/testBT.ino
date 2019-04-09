@@ -90,6 +90,7 @@ void loop()
   while (Serial.available())
   {
     buf = (char)Serial.read();
+    Serial.write(buf);
     if (buf == 'A') {
       digitalWrite(12, HIGH);
     }

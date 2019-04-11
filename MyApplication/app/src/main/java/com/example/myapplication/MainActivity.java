@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Button immersion;
 
 
-    BluetoothSocket bSocket = null;
+    static BluetoothSocket bSocket = null;
 
     String address = null , name=null;
     BluetoothAdapter myBluetooth = null;
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         calibrage = findViewById(R.id.calibre);
         controler = findViewById(R.id.control);
-        immersion.findViewById(R.id.immersion);
+        immersion = findViewById(R.id.immersion);
 
 
         calibrage.setOnClickListener(new View.OnClickListener() {
@@ -84,11 +84,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent ActivityMain3 = new Intent(getApplicationContext(), ActivityMain3.class);
                 startActivity(ActivityMain3);
-                try {
+               /* try {
                     bSocket.getOutputStream().write("C".getBytes());
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
+                }*/
                 finish();
             }
         });
@@ -112,11 +112,11 @@ public class MainActivity extends AppCompatActivity {
         immersion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
+               /* try {
                     bSocket.getOutputStream().write("I".getBytes());
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
         });
     }

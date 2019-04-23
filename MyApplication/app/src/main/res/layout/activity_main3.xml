@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/cal"
         android:layout_width="318dp"
         android:layout_height="345dp"
         android:layout_marginStart="8dp"
@@ -17,7 +17,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="TextView"
+        android:text="En attente de données"
+        android:textColor="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.513"
@@ -25,6 +26,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="HardcodedText" />
+
 
     <Button
         android:id="@+id/oui"
@@ -39,7 +41,7 @@
         android:background="@drawable/buttonshape"
         android:text="Oui"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/button7"
+        app:layout_constraintBottom_toTopOf="@+id/ok"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +62,7 @@
         android:background="@drawable/buttonshape3"
         android:text="Non"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/button7"
+        app:layout_constraintBottom_toTopOf="@+id/ok"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.455"
         app:layout_constraintStart_toEndOf="@+id/oui"
@@ -69,7 +71,7 @@
         tools:ignore="HardcodedText" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/ok"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"

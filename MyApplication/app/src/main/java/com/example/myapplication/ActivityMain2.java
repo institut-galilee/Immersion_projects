@@ -182,22 +182,75 @@ public class ActivityMain2 extends AppCompatActivity {
                 String s = themeSelectionne.toString();
                 switch (s){
                     case "Theme 1":
+                        sr.setEnabled(true);
+                        sv.setEnabled(true);
+                        sb.setEnabled(true);
+                        sl.setEnabled(true);
+                        try {
+                            bSocket.getOutputStream().write("T".getBytes());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         theme1();
                         break;
                     case "Theme 2":
+                        sr.setEnabled(true);
+                        sv.setEnabled(true);
+                        sb.setEnabled(true);
+                        sl.setEnabled(true);
+                        try {
+                            bSocket.getOutputStream().write("T".getBytes());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         theme2();
                         break;
                     case "Theme 3":
+                        sr.setEnabled(true);
+                        sv.setEnabled(true);
+                        sb.setEnabled(true);
+                        sl.setEnabled(true);
+                        try {
+                            bSocket.getOutputStream().write("T".getBytes());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         theme3();
                         break;
                     case "Theme 4":
+                        sr.setEnabled(true);
+                        sv.setEnabled(true);
+                        sb.setEnabled(true);
+                        sl.setEnabled(true);
+                        try {
+                            bSocket.getOutputStream().write("T".getBytes());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         theme4();
                         break;
                     case "Theme 5":
+                        sr.setEnabled(true);
+                        sv.setEnabled(true);
+                        sb.setEnabled(true);
+                        sl.setEnabled(true);
+                        try {
+                            bSocket.getOutputStream().write("T".getBytes());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         theme5();
                         break;
                     case "Guirelande":
-                        guirelande();
+                        sr.setEnabled(false);
+                        sv.setEnabled(false);
+                        sb.setEnabled(false);
+                        sl.setEnabled(false);
+                        try {
+                            bSocket.getOutputStream().write("G".getBytes());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         break;
                 }
                 etat = "A";
@@ -377,14 +430,6 @@ public class ActivityMain2 extends AppCompatActivity {
         sr.setProgress(this.r);
         sv.setProgress(this.v);
         sb.setProgress(this.b);
-    }
-
-    public void guirelande(){
-        try {
-            bSocket.getOutputStream().write("G".getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 

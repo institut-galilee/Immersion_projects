@@ -37,29 +37,29 @@ public class MainActivity extends AppCompatActivity {
 
 
     @SuppressLint("HardwareIds")
-    private void bluetooth_connect_device() throws IOException
-    {
-        try
-        {
-            myBluetooth = BluetoothAdapter.getDefaultAdapter();
-            address = myBluetooth.getAddress();
-            pairedDevices = myBluetooth.getBondedDevices();
-            if (pairedDevices.size()>0)
-            {
-                for(BluetoothDevice bt : pairedDevices)
-                {
-                    address=bt.getAddress() ;name = bt.getName();
-                    Toast.makeText(getApplicationContext(),"Connected", Toast.LENGTH_SHORT).show();
+    private void bluetooth_connect_device() throws IOException {
+             try {
+                myBluetooth = BluetoothAdapter.getDefaultAdapter();
+                address = myBluetooth.getAddress();
+                pairedDevices = myBluetooth.getBondedDevices();
+                if (pairedDevices.size() > 0) {
+                    for (BluetoothDevice bt : pairedDevices) {
+                        address = bt.getAddress();
+                        name = bt.getName();
+                        Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
+            catch(Exception ignored){
+            }
+            myBluetooth = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
+            BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(address);//connects to the device's address and checks if it's available
+            bSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);//create a RFCOMM (SPP) connection
+        if (!bSocket.isConnected()) {
+            bSocket.connect();
+            //try { t1.setText("BT Name: "+name+"\nBT Address: "+address); }
+            //catch(Exception e){}
         }
-        catch(Exception ignored){}
-        myBluetooth = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
-        BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(address);//connects to the device's address and checks if it's available
-        bSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);//create a RFCOMM (SPP) connection
-        bSocket.connect();
-        //try { t1.setText("BT Name: "+name+"\nBT Address: "+address); }
-        //catch(Exception e){}
     }
 
 

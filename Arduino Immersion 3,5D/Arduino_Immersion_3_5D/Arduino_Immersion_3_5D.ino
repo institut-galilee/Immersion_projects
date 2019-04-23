@@ -76,9 +76,19 @@ void guireland()
       digitalWrite(12, HIGH);
       mode = THEME;
     }
+     if (buf == 'A') {
+      for (int j = 0; j < 60; j++)
+      {
+        strip.setPixelColor(j, rvb[0], rvb[1], rvb[2]);
+      }
+      strip.show();
+    }
     if (buf == 'E') {
-      digitalWrite(12, LOW);
-      mode = OFF;
+      for (int j = 0; j < 60; j++)
+      {
+        strip.setPixelColor(j, 0, 0, 0);
+      }
+      strip.show();
     }
   }
   for (int j = 0; j < 60; j++)
@@ -106,6 +116,20 @@ void immersion_3_5_D()
     if (buf == 'G') {
       digitalWrite(12, HIGH);
       mode = GUIRELAND;
+    }
+    if (buf == 'A') {
+      for (int j = 0; j < 60; j++)
+      {
+        strip.setPixelColor(j, rvb[0], rvb[1], rvb[2]);
+      }
+      strip.show();
+    }
+    if (buf == 'E') {
+      for (int j = 0; j < 60; j++)
+      {
+        strip.setPixelColor(j, 0, 0, 0);
+      }
+      strip.show();
     }
   }
   Serial.flush();
@@ -179,10 +203,6 @@ void choisir_Theme()
   while (Serial.available() && mode == THEME)
   {
     buf = (char)Serial.read();
-    if (buf == 'E') {
-      digitalWrite(12, LOW);
-      mode = OFF;
-    }
     if (buf == 'C') {
       digitalWrite(12, HIGH);
       mode = CALIBRAGE;
@@ -195,6 +215,21 @@ void choisir_Theme()
       digitalWrite(12, HIGH);
       mode = GUIRELAND;
     }
+     if (buf == 'A') {
+      for (int j = 0; j < 60; j++)
+      {
+        strip.setPixelColor(j, rvb[0], rvb[1], rvb[2]);
+      }
+      strip.show();
+    }
+    if (buf == 'E') {
+      for (int j = 0; j < 60; j++)
+      {
+        strip.setPixelColor(j, 0, 0, 0);
+      }
+      strip.show();
+    }
+    
     if (buf == 'r') {
       i = 0;
       n = 2;
@@ -228,30 +263,36 @@ void choisir_Theme()
     }
   }
 }
+
 void onOff() {
   if (Serial.available() && mode == OFF)
   {
     buf = (char)Serial.read();
+     Serial.println(buf);
     if (buf == 'A') {
-      digitalWrite(12, HIGH);
+      for (int j = 0; j < 60; j++)
+      {
+        strip.setPixelColor(j, 255, 255, 255);
+      }
+      strip.show();
     }
     if (buf == 'E') {
-      digitalWrite(12, LOW);
+      for (int j = 0; j < 60; j++)
+      {
+        strip.setPixelColor(j, 0, 0, 0);
+      }
+      strip.show();
     }
     if (buf == 'T') {
-      digitalWrite(12, HIGH);
       mode = THEME;
     }
     if (buf == 'C') {
-      digitalWrite(12, HIGH);
       mode = CALIBRAGE;
     }
     if (buf == 'I') {
-      digitalWrite(12, HIGH);
       mode = IMMERSION;
     }
     if (buf == 'G') {
-      digitalWrite(12, HIGH);
       mode = GUIRELAND;
     }
   }
@@ -273,6 +314,7 @@ void setup()
 
 void loop()
 {
+  
   if (mode == OFF)
     onOff();
   if (mode == CALIBRAGE)

@@ -356,8 +356,8 @@ public class ActivityMain2 extends AppCompatActivity {
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent MainActivity = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(MainActivity);
+                Intent ActivityMain4 = new Intent(getApplicationContext(), ActivityMain4.class);
+                startActivity(ActivityMain4);
                 finish();
             }
         });

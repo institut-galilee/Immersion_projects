@@ -18,8 +18,7 @@ public class ActivityMain3 extends AppCompatActivity {
     Button oui;
     Button non;
     Button ok;
-
-    TextView text;
+    String text = "";
 
     InputStream tmpIn = null;
     String TAG = "MainActivity";
@@ -54,6 +53,7 @@ public class ActivityMain3 extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     bSocket.getOutputStream().write("Y".getBytes());
+                    text = "";
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -74,8 +74,8 @@ public class ActivityMain3 extends AppCompatActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent MainActivity = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(MainActivity);
+                Intent ActivityMain4 = new Intent(getApplicationContext(), ActivityMain4.class);
+                startActivity(ActivityMain4);
                 try {
                     bSocket.getOutputStream().write("N".getBytes());
                 } catch (IOException e) {
@@ -93,7 +93,6 @@ public class ActivityMain3 extends AppCompatActivity {
     {
         byte[] buffer = new byte[1024];  // buffer store for the stream
         int bytes;
-        String text = "";
         Log.d(TAG, "ConnectedThread: Starting.");
 
             try {

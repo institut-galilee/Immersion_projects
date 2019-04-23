@@ -41,11 +41,6 @@ public class ActivityMain2 extends AppCompatActivity {
 
 
     String etat = "A";
-    String address = null , name=null;
-    BluetoothAdapter myBluetooth = null;
-    BluetoothSocket btSocket = null;
-    Set<BluetoothDevice> pairedDevices;
-    static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     //@SuppressLint("ClickableViewAccessibility")
 
@@ -122,26 +117,26 @@ public class ActivityMain2 extends AppCompatActivity {
         }
     }
 
-    /*private void onOff()
+    private void onOff()
     {
         try
         {
-            if (btSocket!=null)
+            if (bSocket!=null)
             {
                 if (etat.equals("E")) {
                     etat = "A";
                 }
-                if (etat.equals("A")) {
+                else if (etat.equals("A")){
                     etat = "E";
                 }
-                btSocket.getOutputStream().write(etat.getBytes());
+                bSocket.getOutputStream().write(etat.getBytes());
             }
         }
         catch (Exception e)
         {
             Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-    }*/
+    }
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -201,7 +196,11 @@ public class ActivityMain2 extends AppCompatActivity {
                     case "Theme 5":
                         theme5();
                         break;
+                    case "Guirelande":
+                        guirelande();
+                        break;
                 }
+                etat = "A";
                 for (int i=1; i<=3; i++)
                 {
                     envoiCouleurs(i);
@@ -223,6 +222,7 @@ public class ActivityMain2 extends AppCompatActivity {
                 r1="r"+progress+";";
                 r = progress;
                 tr.setText(""+progress+"");
+                etat = "A";
                 envoiCouleurs(1);
             }
 
@@ -243,6 +243,7 @@ public class ActivityMain2 extends AppCompatActivity {
                 v1="v"+progress+";";
                 v = progress;
                 tv.setText(""+progress+"");
+                etat = "A";
                 envoiCouleurs(2);
             }
 
@@ -263,6 +264,7 @@ public class ActivityMain2 extends AppCompatActivity {
                 b1="b"+progress+";";
                 b = progress;
                 tb.setText(""+progress+"");
+                etat = "A";
                 envoiCouleurs(3);
             }
 
@@ -307,12 +309,12 @@ public class ActivityMain2 extends AppCompatActivity {
             }
         });
 
-       /* allumer.setOnClickListener(new View.OnClickListener() {
+        allumer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onOff();
             }
-        });*/
+        });
 
 
     }
@@ -377,13 +379,13 @@ public class ActivityMain2 extends AppCompatActivity {
         sb.setProgress(this.b);
     }
 
-    /*public void guirelande(){
+    public void guirelande(){
         try {
-            btSocket.getOutputStream().write("G".getBytes());
+            bSocket.getOutputStream().write("G".getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
 
 

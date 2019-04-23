@@ -22,6 +22,42 @@ colorData current;
 colorData *data;
 ///////////////////////////////////CAPTEUR///////////////////////////
 
+void getMode(){
+   if (Serial.available())
+  {
+    buf = (char)Serial.read();
+    
+    if (buf == 'C') {
+      mode = CALIBRAGE;
+
+    }
+    if (buf == 'G'){
+      mode = GUIRELAND;
+    }
+    if (buf == 'I') {
+      mode = IMMERSION;
+    }
+    if (buf == 'T') {
+      mode = THEME;
+    }
+     if (buf == 'A') {
+      for (int j = 0; j < 60; j++)
+      {
+        strip.setPixelColor(j, rvb[0], rvb[1], rvb[2]);
+      }
+      strip.show();
+    }
+    if (buf == 'E') {
+      for (int j = 0; j < 60; j++)
+      {
+        strip.setPixelColor(j, 0, 0, 0);
+      }
+      strip.show();
+    }
+  }
+}
+
+
 void calibrage()
 {
   Serial.println("Debut du calibrage !!");
@@ -60,79 +96,26 @@ void cali() {
 
 void guireland()
 {
-  if (Serial.available())
+  getMode();
+  while(Serial.available()>0)
   {
-    buf = (char)Serial.read();
-    if (buf == 'C') {
-      digitalWrite(12, HIGH);
-      mode = CALIBRAGE;
-
-    }
-    if (buf == 'I') {
-      digitalWrite(12, HIGH);
-      mode = IMMERSION;
-    }
-    if (buf == 'T') {
-      digitalWrite(12, HIGH);
-      mode = THEME;
-    }
-     if (buf == 'A') {
-      for (int j = 0; j < 60; j++)
-      {
-        strip.setPixelColor(j, rvb[0], rvb[1], rvb[2]);
-      }
-      strip.show();
-    }
-    if (buf == 'E') {
-      for (int j = 0; j < 60; j++)
-      {
-        strip.setPixelColor(j, 0, 0, 0);
-      }
-      strip.show();
-    }
+    char trash = Serial.read();
   }
+  Serial.println(buf);
+  if(!(buf == 'E')){
   for (int j = 0; j < 60; j++)
   {
     strip.setPixelColor(j, random(j), random(j + 1), random(j + 2));
   }
   strip.show();
   delay(400);
+  }
 }
 
 void immersion_3_5_D()
 {
-  if (Serial.available())
-  {
-    buf = Serial.read();
-    if (buf == 'C') {
-      digitalWrite(12, HIGH);
-      mode = CALIBRAGE;
-
-    }
-    if (buf == 'T') {
-      digitalWrite(12, HIGH);
-      mode = THEME;
-    }
-    if (buf == 'G') {
-      digitalWrite(12, HIGH);
-      mode = GUIRELAND;
-    }
-    if (buf == 'A') {
-      for (int j = 0; j < 60; j++)
-      {
-        strip.setPixelColor(j, rvb[0], rvb[1], rvb[2]);
-      }
-      strip.show();
-    }
-    if (buf == 'E') {
-      for (int j = 0; j < 60; j++)
-      {
-        strip.setPixelColor(j, 0, 0, 0);
-      }
-      strip.show();
-    }
-  }
-  Serial.flush();
+  getMode();
+  
   current = CS.readRGB();
   CS.getRGB(&current);
 
@@ -202,33 +185,7 @@ void choisir_Theme()
 {
   while (Serial.available() && mode == THEME)
   {
-    buf = (char)Serial.read();
-    if (buf == 'C') {
-      digitalWrite(12, HIGH);
-      mode = CALIBRAGE;
-    }
-    if (buf == 'I') {
-      digitalWrite(12, HIGH);
-      mode = IMMERSION;
-    }
-    if (buf == 'G') {
-      digitalWrite(12, HIGH);
-      mode = GUIRELAND;
-    }
-     if (buf == 'A') {
-      for (int j = 0; j < 60; j++)
-      {
-        strip.setPixelColor(j, rvb[0], rvb[1], rvb[2]);
-      }
-      strip.show();
-    }
-    if (buf == 'E') {
-      for (int j = 0; j < 60; j++)
-      {
-        strip.setPixelColor(j, 0, 0, 0);
-      }
-      strip.show();
-    }
+    getMode();
     
     if (buf == 'r') {
       i = 0;
@@ -282,6 +239,7 @@ void onOff() {
         strip.setPixelColor(j, 0, 0, 0);
       }
       strip.show();
+      mode = OFF;
     }
     if (buf == 'T') {
       mode = THEME;
@@ -314,7 +272,6 @@ void setup()
 
 void loop()
 {
-  
   if (mode == OFF)
     onOff();
   if (mode == CALIBRAGE)

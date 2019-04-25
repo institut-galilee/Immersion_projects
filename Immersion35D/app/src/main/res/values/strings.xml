@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="rech">rechercher</string>
+    <string name="calibrage">Calibrage</string>
+    <string name="controler_les_couleurs">Controler les couleurs</string>
+    <string name="mode_immersion">Mode Immersion</string>
+    <string name="_255">255</string>
+    <string name="_0">0</string>
+    <string name="theme">Theme</string>
+    <string name="current">Current</string>
+    <string name="retour">Retour</string>
+    <string name="lumos">Luminosité</string>
+    <string name="_100">100</string>
+    <string name="on_off">Allumer/Eteindre</string>
+    <string-array name="Theme">
+        <item>Blanc</item>
+        <item>Rouge</item>
+        <item>Vert</item>
+        <item>Bleu</item>
+        <item>Jaune</item>
+        <item>Magenta</item>
+        <item>Cyan</item>
+        <item>Orange</item>
+        <item>Rose</item>
+        <item>Guirelande</item>
+        <item>Fondu</item>
+    </string-array>
+</resources>

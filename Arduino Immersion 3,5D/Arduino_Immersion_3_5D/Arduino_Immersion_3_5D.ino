@@ -18,7 +18,6 @@ char r = NULL;
 int n, b;
 int i = 0;
 int k = 0;
-int dif1,dif2,dif3 = 0;
 int rvb[4] = {0, 0, 0, 200};
 int dge[4] = {0, 0, 0, 50};
 char buf;
@@ -394,12 +393,9 @@ void degrader()
         rvb[i] = rvb[i] / coef(n + 1);
       if(k == 2)
         dge[i] = dge[i] / coef(n+1);
-      dif1= round(dge[0] - rvb[0])/60;
-      dif2= round(dge[1] - rvb[1])/60;
-      dif3= round(dge[2] - rvb[2])/60;
       for (int j = 0; j < 60; j++)
       {
-        strip.setPixelColor(j, rvb[0] + j * dif1, rvb[1] + j*dif2 , rvb[2] + j*dif3);
+        strip.setPixelColor(j, (60-j)*rvb[0]/60 + j*dge[0]/60, (60-j)*rvb[1]/60 + j*dge[1]/60 , (60-j)*rvb[2]/60 + j*dge[2]/60);
       }
       //strip.setPixelColor(0,rvb[0],rvb[1],rvb[2]);
       //strip.setPixelColor(1,dge[0],dge[1],dge[2]);

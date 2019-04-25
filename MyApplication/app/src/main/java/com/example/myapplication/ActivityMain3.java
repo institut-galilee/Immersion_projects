@@ -77,7 +77,7 @@ public class ActivityMain3 extends AppCompatActivity {
                 Intent ActivityMain4 = new Intent(getApplicationContext(), ActivityMain4.class);
                 startActivity(ActivityMain4);
                 try {
-                    bSocket.getOutputStream().write("N".getBytes());
+                    bSocket.getOutputStream().write("O".getBytes());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

@@ -9,6 +9,7 @@
 #define THEME 3
 #define GUIRELAND 4
 #define FONDU 5
+#define DEGRADER 6
 #define OFF 0
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, BLED, NEO_GRB + NEO_KHZ800);
 // CS ( S2, S3, OUT, S0, S1, LED )
@@ -16,7 +17,10 @@ TCS3200 CS(4, 3, 2, 6, 5, 13);
 char r = NULL;
 int n, b;
 int i = 0;
+int k = 0;
+int dif1,dif2,dif3 = 0;
 int rvb[4] = {0, 0, 0, 200};
+int dge[4] = {0, 0, 0, 50};
 char buf;
 
 int mode = OFF;
@@ -35,7 +39,6 @@ void increaseRed(){
     delay(25);
     rvb[0]++;
   }
-  rvb[0]=255;
 }
 
 void increaseGreen(){
@@ -49,7 +52,6 @@ void increaseGreen(){
     delay(25);
     rvb[1]++;
   }
-  rvb[1]=255;
 }
 
 void increaseBlue(){
@@ -63,7 +65,6 @@ void increaseBlue(){
     delay(25);
     rvb[2]++;
   }
-  rvb[2]=255;
 }
 
 void decreaseRed(){
@@ -77,7 +78,6 @@ void decreaseRed(){
     delay(25);
     rvb[0]--;
   }
-  rvb[0]=0;
 }
 
 void decreaseGreen(){
@@ -91,7 +91,6 @@ void decreaseGreen(){
     delay(25);
     rvb[1]--;
   }
-  rvb[1]=0;
 }
 
 void decreaseBlue(){
@@ -125,6 +124,9 @@ void getMode(){
     }
     if (buf == 'F'){
       mode = FONDU;
+    }
+    if (buf == 'D'){
+      mode = DEGRADER;
     }
     if (buf == 'T') {
       mode = THEME;
@@ -333,6 +335,90 @@ void choisir_Theme()
   }
 }
 
+void degrader()
+{
+  while (Serial.available() && mode == DEGRADER)
+  {
+    getMode();
+
+    if (buf == 'r') {
+      i = 0;
+      k = 1;
+      n = 2;
+      rvb[i] = 0;
+    }
+
+    if (buf == 'v') {
+      i = 1;
+      k = 1;
+      n = 2;
+      rvb[i] = 0;
+    }
+    if (buf == 'b') {
+      i = 2;
+      k = 1;
+      n = 2;
+      rvb[i] = 0;
+    }
+    
+
+    if (buf == 'd') {
+      i = 0;
+      k = 2;
+      n = 2;
+      dge[i] = 0;
+    }
+
+    if (buf == 'g') {
+      i = 1;
+      k = 2;
+      n = 2;
+      dge[i] = 0;
+    }
+    if (buf == 'e') {
+      i = 2;
+      k = 2;
+      n = 2;
+      dge[i] = 0;
+    }
+
+
+    if (buf == 'l') {
+      i = 3;
+      k = 1;
+      n = 2;
+    }
+    
+    if (buf == ';') {
+      if(k == 1)
+        rvb[i] = rvb[i] / coef(n + 1);
+      if(k == 2)
+        dge[i] = dge[i] / coef(n+1);
+      dif1= round(dge[0] - rvb[0])/60;
+      dif2= round(dge[1] - rvb[1])/60;
+      dif3= round(dge[2] - rvb[2])/60;
+      for (int j = 0; j < 60; j++)
+      {
+        strip.setPixelColor(j, rvb[0] + j * dif1, rvb[1] + j*dif2 , rvb[2] + j*dif3);
+      }
+      //strip.setPixelColor(0,rvb[0],rvb[1],rvb[2]);
+      //strip.setPixelColor(1,dge[0],dge[1],dge[2]);
+      strip.setBrightness(rvb[3]);
+      strip.show();
+      delay(20);
+      Serial.flush();
+    }
+    if (charToInt(buf) != -1) {
+      b = charToInt(buf);
+      if(k==1)
+        rvb[i] += b * coef(n);
+      if(k==2)
+        dge[i] += b * coef(n);
+      n--;
+    }
+  }
+}
+
 void onOff() {
   if (Serial.available() && mode == OFF)
   {
@@ -368,6 +454,8 @@ void onOff() {
     if (buf == 'F'){
       mode = FONDU;
     }
+    if (buf == 'D')
+      mode = DEGRADER;
   }
 }
 
@@ -399,5 +487,7 @@ void loop()
     guireland();
   if (mode == FONDU)
     fondu();
+  if (mode == DEGRADER)
+    degrader();
 
 }

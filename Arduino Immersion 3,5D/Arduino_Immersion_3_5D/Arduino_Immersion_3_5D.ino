@@ -8,6 +8,7 @@
 #define IMMERSION 2
 #define THEME 3
 #define GUIRELAND 4
+#define FONDU 5
 #define OFF 0
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, BLED, NEO_GRB + NEO_KHZ800);
 // CS ( S2, S3, OUT, S0, S1, LED )
@@ -15,12 +16,97 @@ TCS3200 CS(4, 3, 2, 6, 5, 13);
 char r = NULL;
 int n, b;
 int i = 0;
-int rvb[3] = {0, 0, 0};
+int rvb[4] = {0, 0, 0, 200};
 char buf;
+
 int mode = OFF;
 colorData current;
 colorData *data;
 ///////////////////////////////////CAPTEUR///////////////////////////
+
+void increaseRed(){
+  while(rvb[0] <255 && mode == FONDU){
+    getMode();
+    for (int j = 0; j < 60; j++)
+    {
+      strip.setPixelColor(j, rvb[0],rvb[1], rvb[2]);
+    }
+    strip.show();
+    delay(25);
+    rvb[0]++;
+  }
+  rvb[0]=255;
+}
+
+void increaseGreen(){
+  while(rvb[1] <255 && mode == FONDU){
+    getMode();
+    for (int j = 0; j < 60; j++)
+    {
+      strip.setPixelColor(j, rvb[0],rvb[1], rvb[2]);
+    }
+    strip.show();
+    delay(25);
+    rvb[1]++;
+  }
+  rvb[1]=255;
+}
+
+void increaseBlue(){
+  while(rvb[2] <255 && mode == FONDU){
+    getMode();
+    for (int j = 0; j < 60; j++)
+    {
+      strip.setPixelColor(j, rvb[0],rvb[1], rvb[2]);
+    }
+    strip.show();
+    delay(25);
+    rvb[2]++;
+  }
+  rvb[2]=255;
+}
+
+void decreaseRed(){
+  while(rvb[0] <255 && mode == FONDU){
+    getMode();
+    for (int j = 0; j < 60; j++)
+    {
+      strip.setPixelColor(j, rvb[0],rvb[1], rvb[2]);
+    }
+    strip.show();
+    delay(25);
+    rvb[0]--;
+  }
+  rvb[0]=0;
+}
+
+void decreaseGreen(){
+  while(rvb[1] >0 && mode == FONDU){
+    getMode();
+    for (int j = 0; j < 60; j++)
+    {
+      strip.setPixelColor(j, rvb[0],rvb[1], rvb[2]);
+    }
+    strip.show();
+    delay(25);
+    rvb[1]--;
+  }
+  rvb[1]=0;
+}
+
+void decreaseBlue(){
+  while(rvb[2] > 0 && mode == FONDU){
+    getMode();
+    for (int j = 0; j < 60; j++)
+    {
+      strip.setPixelColor(j, rvb[0],rvb[1], rvb[2]);
+    }
+    strip.show();
+    delay(25);
+    rvb[2]--;
+  }
+  rvb[2]=0;
+}
 
 void getMode(){
    if (Serial.available())
@@ -36,6 +122,9 @@ void getMode(){
     }
     if (buf == 'I') {
       mode = IMMERSION;
+    }
+    if (buf == 'F'){
+      mode = FONDU;
     }
     if (buf == 'T') {
       mode = THEME;
@@ -69,7 +158,9 @@ void calibrage()
 
 void cali() {
   bool done = false;
-  Serial.println("Voulez vous calibrer le capteur : Y/N");
+  delay(75);
+  Serial.println("Voulez vous calibrer le capteur : ");
+   Serial.println("Oui pour commencer, OK pour quitter");
   while (!done)
   {
     if (Serial.available())
@@ -77,7 +168,7 @@ void cali() {
       r = Serial.read();
       delay(10);
 
-      if (r == 'N')
+      if (r == 'O')
       {
         CS.loadCal(0);
         done = true;
@@ -86,7 +177,6 @@ void cali() {
       {
         calibrage();
         done = true;
-
       }
       Serial.flush();
     }
@@ -110,6 +200,23 @@ void guireland()
   strip.show();
   delay(400);
   }
+}
+
+void fondu()
+{
+  getMode();
+  strip.setBrightness(rvb[3]);
+  increaseGreen();
+  increaseBlue();
+  decreaseGreen();
+  increaseRed();
+  decreaseBlue();
+  increaseGreen();
+  increaseBlue();
+  decreaseBlue();
+  decreaseGreen();
+  decreaseRed();
+  delay(25); 
 }
 
 void immersion_3_5_D()
@@ -186,7 +293,7 @@ void choisir_Theme()
   while (Serial.available() && mode == THEME)
   {
     getMode();
-    
+
     if (buf == 'r') {
       i = 0;
       n = 2;
@@ -203,12 +310,17 @@ void choisir_Theme()
       n = 2;
       rvb[i] = 0;
     }
+    if (buf == 'l') {
+      i = 3;
+      n = 2;
+    }
     if (buf == ';') {
       rvb[i] = rvb[i] / coef(n + 1);
       for (int j = 0; j < 60; j++)
       {
         strip.setPixelColor(j, rvb[0], rvb[1], rvb[2]);
       }
+      strip.setBrightness(rvb[3]);
       strip.show();
       delay(20);
       Serial.flush();
@@ -253,6 +365,9 @@ void onOff() {
     if (buf == 'G') {
       mode = GUIRELAND;
     }
+    if (buf == 'F'){
+      mode = FONDU;
+    }
   }
 }
 
@@ -282,5 +397,7 @@ void loop()
     choisir_Theme();
   if (mode == GUIRELAND)
     guireland();
+  if (mode == FONDU)
+    fondu();
 
 }

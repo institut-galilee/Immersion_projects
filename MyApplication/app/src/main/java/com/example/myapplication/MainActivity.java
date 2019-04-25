@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -20,14 +19,9 @@ import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
-
-
-    private Button calibrage;
-    private Button controler;
-    private Button immersion;
-
+    Button calibrage;
+    Button controler;
+    Button immersion;
 
     static BluetoothSocket bSocket = null;
 
@@ -37,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     BluetoothServerSocket mmServerSocket;
 
     static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-
 
     @SuppressLint("HardwareIds")
     private void bluetooth_connect_device() throws IOException
@@ -57,15 +50,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         catch(Exception ignored){}
-        myBluetooth = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
-        BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(address);//connects to the device's address and checks if it's available
-        bSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);//create a RFCOMM (SPP) connection
+        myBluetooth = BluetoothAdapter.getDefaultAdapter();
+        BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(address);
+        bSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);
         mmServerSocket = myBluetooth.listenUsingInsecureRfcommWithServiceRecord("appname", myUUID);
         bSocket.connect();
-        //try { t1.setText("BT Name: "+name+"\nBT Address: "+address); }
-        //catch(Exception e){}
     }
-
 
     @SuppressLint("HardwareIds")
     @Override
@@ -74,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         try {
             bluetooth_connect_device();
+            bSocket.getOutputStream().write("O".getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -81,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         calibrage = findViewById(R.id.calibre);
         controler = findViewById(R.id.control);
         immersion = findViewById(R.id.immersion);
-
 
         calibrage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
 
         controler.setOnClickListener(new View.OnClickListener() {
             @Override

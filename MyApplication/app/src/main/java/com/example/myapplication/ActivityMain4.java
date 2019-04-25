@@ -12,9 +12,9 @@ import static com.example.myapplication.MainActivity.bSocket;
 
 public class ActivityMain4 extends AppCompatActivity {
 
-    private Button calibrage;
-    private Button controler;
-    private Button immersion;
+    Button calibrage;
+    Button controler;
+    Button immersion;
 
     @SuppressLint("HardwareIds")
     @Override

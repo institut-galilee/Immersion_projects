@@ -6,12 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import java.io.IOException;
 import java.io.InputStream;
-import android.bluetooth.*;
-import android.util.Log;
+import android.widget.ScrollView;
 import android.widget.TextView;
-
 import static com.example.myapplication.MainActivity.*;
-import static java.lang.Thread.sleep;
 
 public class ActivityMain3 extends AppCompatActivity {
 
@@ -19,11 +16,13 @@ public class ActivityMain3 extends AppCompatActivity {
     Button non;
     Button ok;
     String text = "";
-
+    TextView view;
+    ScrollView view_data;
     InputStream tmpIn = null;
-    String TAG = "MainActivity";
-    TextView view_data;
+
+
     InputStream mmInStream;
+    boolean aFini = true;
 
 
     @Override
@@ -34,26 +33,48 @@ public class ActivityMain3 extends AppCompatActivity {
         oui = findViewById(R.id.oui);
         non = findViewById(R.id.non);
         ok = findViewById(R.id.ok);
-
-        view_data = (TextView) findViewById(R.id.cal);
-
+        view_data = findViewById(R.id.cal2);
+        view = findViewById(R.id.cal);
 
         Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
-                findViewById(R.id.cal).setSelected(true);
-                sendMess();
+
+
+                byte[] buffer = new byte[2048];  // buffer store for the stream
+                int bytes;
+
+                try {
+                    tmpIn = bSocket.getInputStream();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                mmInStream = tmpIn;
+                while (aFini) {
+                    try {
+                        bytes = mmInStream.read(buffer);
+                        String incomingMessage = new String(buffer, 0, bytes);
+                        text += incomingMessage;
+                        runOnUiThread(new Runnable() {
+                              @Override
+                              public void run() {
+                                  view.setText(text);
+                              }
+                          });
+                    } catch (IOException ignored) {
+                    }
+                }
             }
         });
         t1.start();
-        System.out.println("la");
 
         oui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    bSocket.getOutputStream().write("Y".getBytes());
                     text = "";
+                    bSocket.getOutputStream().write("Y".getBytes());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -64,6 +85,7 @@ public class ActivityMain3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
+                    text = "";
                     bSocket.getOutputStream().write("N".getBytes());
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -81,43 +103,11 @@ public class ActivityMain3 extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                aFini = false;
+                text = "";
                 finish();
             }
         });
-
-
-
     }
-
-    public void sendMess()
-    {
-        byte[] buffer = new byte[1024];  // buffer store for the stream
-        int bytes;
-        Log.d(TAG, "ConnectedThread: Starting.");
-
-            try {
-                tmpIn = bSocket.getInputStream();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            mmInStream = tmpIn;
-        while (true) {
-            try {
-                bytes = mmInStream.read(buffer);
-                String incomingMessage = new String(buffer, 0, bytes);
-                text += incomingMessage;
-                System.out.println(text);
-
-                view_data.setText(text);
-
-
-            } catch (IOException e) {
-            }
-
-        }
-
-    }
-
 }
 

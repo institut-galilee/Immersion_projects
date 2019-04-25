@@ -1,9 +1,6 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,11 +12,7 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.IOException;
-import java.util.Set;
-import java.util.UUID;
-
 import static com.example.myapplication.MainActivity.bSocket;
 
 public class ActivityMain2 extends AppCompatActivity {
@@ -33,57 +26,16 @@ public class ActivityMain2 extends AppCompatActivity {
     //
 
 
-    String r1, v1, b1, couleurs;
+    String r1, v1, b1, l1, couleurs;
     //Menu des themes
-    private Spinner themes;
-    private Button retour;
-    private Button allumer;
+    Spinner themes;
+    Button retour;
+    Button allumer;
 
 
     String etat = "A";
 
-    //@SuppressLint("ClickableViewAccessibility")
-
-    /*
-    private void setw() throws IOException
-    {
-        bluetooth_connect_device();
-        connexion.setOnTouchListener(new View.OnTouchListener()
-        {   @Override
-        public boolean onTouch(View v, MotionEvent event){
-            if(event.getAction() == MotionEvent.ACTION_DOWN) {led_on_off("f");}
-            if(event.getAction() == MotionEvent.ACTION_UP){led_on_off("b");}
-            return true;}
-        });*/
-
     @SuppressLint("HardwareIds")
-    /*private void bluetooth_connect_device() throws IOException
-    {
-        try
-        {
-            myBluetooth = BluetoothAdapter.getDefaultAdapter();
-            address = myBluetooth.getAddress();
-            pairedDevices = myBluetooth.getBondedDevices();
-            if (pairedDevices.size()>0)
-            {
-                for(BluetoothDevice bt : pairedDevices)
-                {
-                    address=bt.getAddress();
-                    name = bt.getName();
-                    Toast.makeText(getApplicationContext(),"Connected", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
-        catch(Exception ignored){}
-        myBluetooth = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
-        BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(address);//connects to the device's address and checks if it's available
-        btSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);//create a RFCOMM (SPP) connection
-        btSocket.connect();
-        //try { t1.setText("BT Name: "+name+"\nBT Address: "+address); }
-        //catch(Exception e){}
-    }*/
-
-
     private void envoiCouleurs(int a)
     {
         try
@@ -104,6 +56,12 @@ public class ActivityMain2 extends AppCompatActivity {
                 }
                 if(a==3) {
                     couleurs = b1;
+                    for (char e : couleurs.toCharArray()) {
+                        bSocket.getOutputStream().write(e);
+                    }
+                }
+                if(a==4) {
+                    couleurs = l1;
                     for (char e : couleurs.toCharArray()) {
                         bSocket.getOutputStream().write(e);
                     }
@@ -181,7 +139,7 @@ public class ActivityMain2 extends AppCompatActivity {
                 CharSequence themeSelectionne = (CharSequence) parent.getItemAtPosition(position);
                 String s = themeSelectionne.toString();
                 switch (s){
-                    case "Theme 1":
+                    case "Blanc":
                         sr.setEnabled(true);
                         sv.setEnabled(true);
                         sb.setEnabled(true);
@@ -191,9 +149,9 @@ public class ActivityMain2 extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        theme1();
+                        theme(128,128,128,50);
                         break;
-                    case "Theme 2":
+                    case "Rouge":
                         sr.setEnabled(true);
                         sv.setEnabled(true);
                         sb.setEnabled(true);
@@ -203,9 +161,9 @@ public class ActivityMain2 extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        theme2();
+                        theme(255,0,0,50);
                         break;
-                    case "Theme 3":
+                    case "Vert":
                         sr.setEnabled(true);
                         sv.setEnabled(true);
                         sb.setEnabled(true);
@@ -215,9 +173,9 @@ public class ActivityMain2 extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        theme3();
+                        theme(0,255,0,50);
                         break;
-                    case "Theme 4":
+                    case "Bleu":
                         sr.setEnabled(true);
                         sv.setEnabled(true);
                         sb.setEnabled(true);
@@ -227,9 +185,9 @@ public class ActivityMain2 extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        theme4();
+                        theme(0,0,255,50);
                         break;
-                    case "Theme 5":
+                    case "Jaune":
                         sr.setEnabled(true);
                         sv.setEnabled(true);
                         sb.setEnabled(true);
@@ -239,7 +197,55 @@ public class ActivityMain2 extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        theme5();
+                        theme(255,255,0,50);
+                        break;
+                    case "Magenta":
+                        sr.setEnabled(true);
+                        sv.setEnabled(true);
+                        sb.setEnabled(true);
+                        sl.setEnabled(true);
+                        try {
+                            bSocket.getOutputStream().write("T".getBytes());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        theme(255,0,255,50);
+                        break;
+                    case "Cyan":
+                        sr.setEnabled(true);
+                        sv.setEnabled(true);
+                        sb.setEnabled(true);
+                        sl.setEnabled(true);
+                        try {
+                            bSocket.getOutputStream().write("T".getBytes());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        theme(0,255,255,50);
+                        break;
+                    case "Orange":
+                        sr.setEnabled(true);
+                        sv.setEnabled(true);
+                        sb.setEnabled(true);
+                        sl.setEnabled(true);
+                        try {
+                            bSocket.getOutputStream().write("T".getBytes());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        theme(255,50,0,50);
+                        break;
+                    case "Rose":
+                        sr.setEnabled(true);
+                        sv.setEnabled(true);
+                        sb.setEnabled(true);
+                        sl.setEnabled(true);
+                        try {
+                            bSocket.getOutputStream().write("T".getBytes());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        theme(255,0,40,50);
                         break;
                     case "Guirelande":
                         sr.setEnabled(false);
@@ -252,9 +258,20 @@ public class ActivityMain2 extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         break;
+                    case "Fondu":
+                        sr.setEnabled(false);
+                        sv.setEnabled(false);
+                        sb.setEnabled(false);
+                        sl.setEnabled(true);
+                        try {
+                            bSocket.getOutputStream().write("F".getBytes());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        break;
                 }
                 etat = "A";
-                for (int i=1; i<=3; i++)
+                for (int i=1; i<=4; i++)
                 {
                     envoiCouleurs(i);
                 }
@@ -335,8 +352,11 @@ public class ActivityMain2 extends AppCompatActivity {
         sl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                l1="l"+progress+";";
                 l = progress;
                 tl.setText(""+progress+"");
+                etat = "A";
+                envoiCouleurs(4);
             }
 
             @Override
@@ -350,9 +370,6 @@ public class ActivityMain2 extends AppCompatActivity {
             }
         });
 
-        /*r = sr.getProgress();
-        v = sv.getProgress();
-        b = sb.getProgress()*/
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -372,67 +389,21 @@ public class ActivityMain2 extends AppCompatActivity {
 
     }
 
-    public void theme1(){
-        this.r = 44;
+    public void theme(int rd,int vt,int be, int lm){
+        this.r = rd;
         this.r1= ""+this.r;
-        this.v = 120;
+        this.v = vt;
         this.v1= ""+this.v;
-        this.b = 78;
+        this.b = be;
         this.b1= ""+this.b;
+        this.l = lm;
+        this.l1= ""+this.l;
         sr.setProgress(this.r);
         sv.setProgress(this.v);
         sb.setProgress(this.b);
+        sl.setProgress(this.l);
+
     }
-
-    public void theme2(){
-        this.r = 112;
-        this.r1= ""+this.r;
-        this.v = 0;
-        this.v1= ""+this.v;
-        this.b = 255;
-        this.b1= ""+this.b;
-        sr.setProgress(this.r);
-        sv.setProgress(this.v);
-        sb.setProgress(this.b);
-    }
-
-    public void theme3(){
-        this.r = 12;
-        this.r1= ""+this.r;
-        this.v = 10;
-        this.v1= ""+this.v;
-        this.b = 25;
-        this.b1= ""+this.b;
-        sr.setProgress(this.r);
-        sv.setProgress(this.v);
-        sb.setProgress(this.b);
-    }
-
-    public void theme4(){
-        this.r = 200;
-        this.r1= ""+this.r;
-        this.v = 218;
-        this.v1= ""+this.v;
-        this.b = 255;
-        this.b1= ""+this.b;
-        sr.setProgress(this.r);
-        sv.setProgress(this.v);
-        sb.setProgress(this.b);
-    }
-
-    public void theme5(){
-        this.r = 6;
-        this.r1= ""+this.r;
-        this.v = 31;
-        this.v1= ""+this.v;
-        this.b = 99;
-        this.b1= ""+this.b;
-        sr.setProgress(this.r);
-        sv.setProgress(this.v);
-        sb.setProgress(this.b);
-    }
-
-
 
 
 }

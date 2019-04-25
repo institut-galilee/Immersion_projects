@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.immersion35D;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -12,8 +12,10 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.io.IOException;
-import static com.example.myapplication.MainActivity.bSocket;
+
+import static com.immersion35D.MainActivity.bSocket;
 
 public class ActivityMain2 extends AppCompatActivity {
 

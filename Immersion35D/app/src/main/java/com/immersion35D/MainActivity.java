@@ -1,31 +1,78 @@
-package com.example.myapplication;
+package com.immersion35D;
+
 
 import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothServerSocket;
+import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
 import java.io.IOException;
-import static com.example.myapplication.MainActivity.bSocket;
+import java.util.Set;
+import java.util.UUID;
 
 
-public class ActivityMain4 extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     Button calibrage;
     Button controler;
     Button immersion;
+
+    static BluetoothSocket bSocket = null;
+
+    String address = null , name=null;
+    BluetoothAdapter myBluetooth = null;
+    Set<BluetoothDevice> pairedDevices;
+    BluetoothServerSocket mmServerSocket;
+
+    static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+
+    @SuppressLint("HardwareIds")
+    private void bluetooth_connect_device() throws IOException
+    {
+        try
+        {
+            myBluetooth = BluetoothAdapter.getDefaultAdapter();
+            address = myBluetooth.getAddress();
+            pairedDevices = myBluetooth.getBondedDevices();
+            if (pairedDevices.size()>0)
+            {
+                for(BluetoothDevice bt : pairedDevices)
+                {
+                    address=bt.getAddress() ;name = bt.getName();
+                    Toast.makeText(getApplicationContext(),"Connected", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+        catch(Exception ignored){}
+        myBluetooth = BluetoothAdapter.getDefaultAdapter();
+        BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(address);
+        bSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);
+        mmServerSocket = myBluetooth.listenUsingInsecureRfcommWithServiceRecord("appname", myUUID);
+        bSocket.connect();
+    }
 
     @SuppressLint("HardwareIds")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        try {
+            bluetooth_connect_device();
+            bSocket.getOutputStream().write("O".getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         calibrage = findViewById(R.id.calibre);
         controler = findViewById(R.id.control);
         immersion = findViewById(R.id.immersion);
-
 
         calibrage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,8 +87,6 @@ public class ActivityMain4 extends AppCompatActivity {
                 finish();
             }
         });
-
-
 
         controler.setOnClickListener(new View.OnClickListener() {
             @Override

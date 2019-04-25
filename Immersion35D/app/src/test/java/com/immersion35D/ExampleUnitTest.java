@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.immersion35D;
 
 import org.junit.Test;
 

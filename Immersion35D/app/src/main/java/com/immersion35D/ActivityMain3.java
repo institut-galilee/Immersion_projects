@@ -1,14 +1,17 @@
-package com.example.myapplication;
+package com.immersion35D;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import java.io.IOException;
-import java.io.InputStream;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import static com.example.myapplication.MainActivity.*;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import static com.immersion35D.MainActivity.*;
 
 public class ActivityMain3 extends AppCompatActivity {
 

@@ -28,6 +28,8 @@
         <activity android:name=".ActivityMain2"  android:screenOrientation="portrait"/>
         <activity android:name=".ActivityMain3"  android:screenOrientation="portrait"/>
         <activity android:name=".ActivityMain4"  android:screenOrientation="portrait"/>
+        <activity android:name=".ActivityMain5"  android:screenOrientation="portrait"/>
+
 
     </application>
 

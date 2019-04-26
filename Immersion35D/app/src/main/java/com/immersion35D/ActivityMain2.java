@@ -33,70 +33,11 @@ public class ActivityMain2 extends AppCompatActivity {
     Spinner themes;
     Button retour;
     Button allumer;
+    Button degrade;
 
 
     String etat = "A";
 
-    @SuppressLint("HardwareIds")
-    private void envoiCouleurs(int a)
-    {
-        try
-        {
-            if (bSocket!=null)
-            {
-                if(a==1) {
-                    couleurs = r1;
-                    for (char e : couleurs.toCharArray()) {
-                        bSocket.getOutputStream().write(e);
-                    }
-                }
-                if(a==2) {
-                    couleurs = v1;
-                    for (char e : couleurs.toCharArray()) {
-                        bSocket.getOutputStream().write(e);
-                    }
-                }
-                if(a==3) {
-                    couleurs = b1;
-                    for (char e : couleurs.toCharArray()) {
-                        bSocket.getOutputStream().write(e);
-                    }
-                }
-                if(a==4) {
-                    couleurs = l1;
-                    for (char e : couleurs.toCharArray()) {
-                        bSocket.getOutputStream().write(e);
-                    }
-                }
-               // btSocket.getOutputStream().write(this.r);
-            }
-        }
-        catch (Exception e)
-        {
-            Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void onOff()
-    {
-        try
-        {
-            if (bSocket!=null)
-            {
-                if (etat.equals("E")) {
-                    etat = "A";
-                }
-                else if (etat.equals("A")){
-                    etat = "E";
-                }
-                bSocket.getOutputStream().write(etat.getBytes());
-            }
-        }
-        catch (Exception e)
-        {
-            Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    }
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -134,6 +75,7 @@ public class ActivityMain2 extends AppCompatActivity {
 
         retour = findViewById(R.id.retour);
         allumer = findViewById(R.id.allumer);
+        degrade = findViewById(R.id.degrade);
 
         themes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -285,9 +227,8 @@ public class ActivityMain2 extends AppCompatActivity {
             }
         });
 
-
-
         //Gestion de l'affichage des valeurs en instantané
+
         sr.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -388,7 +329,82 @@ public class ActivityMain2 extends AppCompatActivity {
             }
         });
 
+        degrade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    bSocket.getOutputStream().write("D".getBytes());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Intent ActivityMain5 = new Intent(getApplicationContext(), ActivityMain5.class);
+                startActivity(ActivityMain5);
+                finish();
+            }
+        });
 
+
+    }
+
+    @SuppressLint("HardwareIds")
+    private void envoiCouleurs(int a)
+    {
+        try
+        {
+            if (bSocket!=null)
+            {
+                if(a==1) {
+                    couleurs = r1;
+                    for (char e : couleurs.toCharArray()) {
+                        bSocket.getOutputStream().write(e);
+                    }
+                }
+                if(a==2) {
+                    couleurs = v1;
+                    for (char e : couleurs.toCharArray()) {
+                        bSocket.getOutputStream().write(e);
+                    }
+                }
+                if(a==3) {
+                    couleurs = b1;
+                    for (char e : couleurs.toCharArray()) {
+                        bSocket.getOutputStream().write(e);
+                    }
+                }
+                if(a==4) {
+                    couleurs = l1;
+                    for (char e : couleurs.toCharArray()) {
+                        bSocket.getOutputStream().write(e);
+                    }
+                }
+                // btSocket.getOutputStream().write(this.r);
+            }
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void onOff()
+    {
+        try
+        {
+            if (bSocket!=null)
+            {
+                if (etat.equals("E")) {
+                    etat = "A";
+                }
+                else if (etat.equals("A")){
+                    etat = "E";
+                }
+                bSocket.getOutputStream().write(etat.getBytes());
+            }
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void theme(int rd,int vt,int be, int lm){

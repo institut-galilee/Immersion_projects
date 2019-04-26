@@ -12,6 +12,10 @@
     <string name="lumos">Luminosité</string>
     <string name="_100">100</string>
     <string name="on_off">Allumer/Eteindre</string>
+    <string name="couleur_n_2">Couleur n°2</string>
+    <string name="couleur_n_1">Couleur n°1</string>
+    <string name="luminosit">Luminosité</string>
+    <string name="_128">128</string>
     <string-array name="Theme">
         <item>Blanc</item>
         <item>Rouge</item>

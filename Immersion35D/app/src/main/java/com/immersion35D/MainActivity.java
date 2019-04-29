@@ -6,7 +6,9 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -58,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         bSocket.connect();
     }
 
+
+
     @SuppressLint("HardwareIds")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,43 +78,65 @@ public class MainActivity extends AppCompatActivity {
         controler = findViewById(R.id.control);
         immersion = findViewById(R.id.immersion);
 
-        calibrage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent ActivityMain3 = new Intent(getApplicationContext(), ActivityMain3.class);
-                startActivity(ActivityMain3);
-                try {
-                    bSocket.getOutputStream().write("C".getBytes());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                finish();
-            }
-        });
 
-        controler.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent ActivityMain2 = new Intent(getApplicationContext(), ActivityMain2.class);
-                startActivity(ActivityMain2);
-                try {
-                    bSocket.getOutputStream().write("T".getBytes());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                finish();
-            }
-        });
+        if(bSocket.isConnected()) {
+            calibrage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent ActivityMain3 = new Intent(getApplicationContext(), ActivityMain3.class);
+                    startActivity(ActivityMain3);
+                    try {
+                        bSocket.getOutputStream().write("C".getBytes());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    finish();
 
-        immersion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    bSocket.getOutputStream().write("I".getBytes());
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
-            }
-        });
+            });
+
+            controler.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent ActivityMain2 = new Intent(getApplicationContext(), ActivityMain2.class);
+                    startActivity(ActivityMain2);
+                    try {
+                        bSocket.getOutputStream().write("T".getBytes());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    finish();
+                }
+            });
+
+            immersion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        bSocket.getOutputStream().write("I".getBytes());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(true);
+            builder.setTitle("Alerte");
+            builder.setPositiveButton("Vous n'êtes pas connecté au bluetooth",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+            builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
     }
 }

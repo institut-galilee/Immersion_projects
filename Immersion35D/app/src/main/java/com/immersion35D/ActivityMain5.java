@@ -1,5 +1,6 @@
 package com.immersion35D;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,11 +17,11 @@ import static com.immersion35D.MainActivity.bSocket;
 public class ActivityMain5 extends AppCompatActivity {
 
 
-    private int valr1, valr2, valv1, valv2, valb1, valb2, lumin;
+    int valr1, valr2, valv1, valv2, valb1, valb2, lumin;
     //Jauges pour la gestion du rouge, vert, bleu des deux couleurs et de la luminosité respactivement
-    private SeekBar svalr1, svalr2, svalv1, svalv2, svalb1, svalb2, svallum;
+    SeekBar svalr1, svalr2, svalv1, svalv2, svalb1, svalb2, svallum;
     //Affichage du rouge, vert, bleu des deux couleurs et luminosité respectivement
-    private TextView tvalr1, tvalr2, tvalv1, tvalv2, tvalb1, tvalb2, tvallum;
+    TextView tvalr1, tvalr2, tvalv1, tvalv2, tvalb1, tvalb2, tvallum;
     String r1, v1, b1, r2, v2, b2, l, couleurs;
     Button retour2;
 
@@ -49,6 +50,7 @@ public class ActivityMain5 extends AppCompatActivity {
 
 
         svalr1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 r1="r"+progress+";";
@@ -69,6 +71,7 @@ public class ActivityMain5 extends AppCompatActivity {
         });
 
         svalv1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 v1="v"+progress+";";
@@ -89,6 +92,7 @@ public class ActivityMain5 extends AppCompatActivity {
         });
 
         svalb1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 b1="b"+progress+";";
@@ -109,6 +113,7 @@ public class ActivityMain5 extends AppCompatActivity {
         });
 
         svalr2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 r2="d"+progress+";";
@@ -129,6 +134,7 @@ public class ActivityMain5 extends AppCompatActivity {
         });
 
         svalv2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 v2="g"+progress+";";
@@ -149,6 +155,7 @@ public class ActivityMain5 extends AppCompatActivity {
         });
 
         svalb2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 b2="e"+progress+";";
@@ -169,6 +176,7 @@ public class ActivityMain5 extends AppCompatActivity {
         });
 
         svallum.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 l="l"+progress+";";

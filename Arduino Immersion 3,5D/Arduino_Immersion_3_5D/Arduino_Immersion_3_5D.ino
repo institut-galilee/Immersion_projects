@@ -146,7 +146,7 @@ void cali() {
   bool done = false;
   delay(75);
   Serial.println("Voulez vous calibrer le capteur : ");
-   Serial.println("Oui pour commencer, OK pour quitter");
+   Serial.println("Oui pour commencer, Mode Immersion pour quitter");
   while (!done)
   {
     if (Serial.available())
@@ -183,7 +183,6 @@ void calibrage()
 void immersion_3_5_D()
 {
   getMode();
-  
   current = CS.readRGB();
   CS.getRGB(&current);
 

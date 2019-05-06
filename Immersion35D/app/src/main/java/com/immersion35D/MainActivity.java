@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     Button calibrage;
     Button controler;
     Button immersion;
+    private BluetoothAdapter bluetoothAdapter;
+
 
     static BluetoothSocket bSocket = null;
 
@@ -67,9 +69,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        checkBluetoothState();
         try {
             bluetooth_connect_device();
-            bSocket.getOutputStream().write("O".getBytes());
+            if(bSocket.isConnected())
+                bSocket.getOutputStream().write("O".getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -79,10 +84,10 @@ public class MainActivity extends AppCompatActivity {
         immersion = findViewById(R.id.immersion);
 
 
-        if(bSocket.isConnected()) {
-            calibrage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        calibrage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (bSocket.isConnected()) {
                     Intent ActivityMain3 = new Intent(getApplicationContext(), ActivityMain3.class);
                     startActivity(ActivityMain3);
                     try {
@@ -91,13 +96,14 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     finish();
+                } else{popup();}
+            }
+        });
 
-                }
-            });
-
-            controler.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        controler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (bSocket.isConnected()) {
                     Intent ActivityMain2 = new Intent(getApplicationContext(), ActivityMain2.class);
                     startActivity(ActivityMain2);
                     try {
@@ -106,37 +112,60 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     finish();
-                }
-            });
+                }else {popup();}
+            }
+        });
 
-            immersion.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        immersion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (bSocket.isConnected()) {
                     try {
                         bSocket.getOutputStream().write("I".getBytes());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }
-            });
-        } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setCancelable(true);
-            builder.setTitle("Alerte");
-            builder.setPositiveButton("Vous n'êtes pas connecté au bluetooth",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    });
-            builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                }
-            });
+                }else {popup();}
+            }
+        });
 
-            AlertDialog dialog = builder.create();
-            dialog.show();
+    }
+
+    public void popup(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle("Alerte");
+        builder.setPositiveButton("Vous n'êtes pas connecté avec l'équipement",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void checkBluetoothState()
+    {
+        if (bluetoothAdapter == null)
+        {
+            Toast.makeText(this, "Bluetooth pas supporté sur cet appareil", Toast.LENGTH_SHORT).show();
+        } else{
+            if(bluetoothAdapter.isEnabled())
+            {
+                    Toast.makeText(this, "Bluetooth est sactivé", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(this, "Activez le Bluetooth", Toast.LENGTH_SHORT).show();
+                Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableIntent, 1);
+            }
         }
     }
 }

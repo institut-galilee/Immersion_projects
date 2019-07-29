@@ -15,7 +15,7 @@
 	  
 ## Nom du produit : Set-up Immersion 3.5D;
 
-## Description du produit :
+## Idée de base :
 
 Le but de notre produit est une immersion dans une expérience multimédia s'approchant de la technologie de la 4DX à moindre coût.
 Pour cela nous devons créer un set-up adaptable sur toutes les structures (télévisions, ordinateurs...). Le set-up est composé de la façon suivante :	
@@ -38,7 +38,7 @@ celle-ci, augmenter ou diminuer la lumière ou bien changer la couleur de la ban
 
 En fonction de l'avancement du projet, nous pourrons ajouter d'autres amélioration, options, composant et objets connectés sur notre set-up
 
-## Composants :
+#### Composants :
 * LED : ESP32, BANDE LED, Capteurs couleur de lumière, cable USB, kit de connection (fil) ;
 * Fauteuil : housse massage ou moteurs vibrants, enceinte bluetooth, ESP32, capteurs sonores; 
 

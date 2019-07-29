@@ -46,15 +46,17 @@ Au départ, nous avons imaginé le set-up avec des composants facilement trouvab
 ## TRAVAIL RÉALISÉ
 
 ### Analyse de l'éxistant
-Au cours de notre analyse, nous avons pris connaissance de la plupart des technologies se rapprochant de nos objectifs. Pour la LED, les principales technologies sont intégré à l’intérieur même d'un téléviseur et d'autres si y connecte via HDMI ou USB. Toutes les recherches effectuées, nous ont amenés à la conclusion que notre méthode n'a pas encore été exploré. Il s'agit donc d'un défit que nous nous sommes fixer de réaliser. Le fauteuil quant a lui serait une version a moindre coût de la 4DX.
+Au cours de notre analyse, nous avons pris connaissance de la plupart des technologies se rapprochant de nos objectifs. Pour la LED, les principales technologies sont intégré à l’intérieur même d'un téléviseur et d'autres si y connecte via HDMI ou USB. Toutes les recherches effectuées, nous ont amenés à la conclusion que notre méthode n'a pas encore été exploré. Il s'agit donc d'un défi que nous nous sommes fixé de réaliser. Le fauteuil quant à lui serait une version à moindre coût de la 4DX.
 
 ### Conception du prototype
 
 #### LED
 La conception de la LED a connu 3 versions :
-* Version Alpha : Sur l'ESP32 les bibliotheques n'ete pas compatible nous sommes donc passer a l'arduino pour avoir un prototype rapidement.
-* Version Beta :
-* Version proto :
+* Version Alpha : Sur l'ESP32 les bibliothèques n’étaient pas compatibles nous sommes donc passé à l’Arduino pour avoir un prototype rapidement. Une fois la migration faite, la LED est capable de reconnaître les couleurs avec une reproduction approximative. 
+
+* Version Beta : Le calibrage des couleurs est intégré afin de reproduire le plus fidèlement possible ce qui est émis par n'importe quel écran LED ou LCD (d'autres test pourront permettre une adaptation polyvalente).
+
+* Version proto : Un ajout du Bluetooth liant application et micro-contrôleur afin de faciliter l'interaction hommes-machine.  
 
 #### Application
 

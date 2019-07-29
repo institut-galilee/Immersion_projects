@@ -1,21 +1,21 @@
 # Immersion_projects
 
-## TEAM MEMBRES :
-* Name: Heba Kaddouh [Hebakaddouh](https://github.com/Hebakaddouh)
+## MEMBRES DE L'EQUIPE :
+* Prenom: Heba Kaddouh [Hebakaddouh](https://github.com/Hebakaddouh)
   Email : heba.kaddouh@gmail.com
 	  
-* Name: Mohamed Ben Saad [Mohaabenz](https://github.com/Mohaabenz)
+* Prenom: Mohamed Ben Saad [Mohaabenz](https://github.com/Mohaabenz)
   Email : bensaad.mohamedamine@gmail.com
 
-* Name: Jessy Colombo [Greyman93](https://github.com/Greyman93)
+* Prenom: Jessy Colombo [Greyman93](https://github.com/Greyman93)
   Email : jessy.colombo31@gmail.com
 	  
-* Name: Khalid Barakat [Giitto](https://github.com/Giitto)
+* Prenom: Khalid Barakat [Giitto](https://github.com/Giitto)
   Email : bckhalid@hotmail.fr
 	  
-## Name products : Set-up Immersion 3.5D;
+## Nom du produit : Set-up Immersion 3.5D;
 
-## Description products :
+## Description du produit :
 
 Le but de notre produit est une immersion dans une expérience multimédia s'approchant de la technologie de la 4DX à moindre coût.
 Pour cela nous devons créer un set-up adaptable sur toutes les structures (télévisions, ordinateurs...). Le set-up est composé de la façon suivante :	

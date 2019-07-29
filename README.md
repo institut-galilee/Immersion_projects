@@ -78,3 +78,6 @@ La conception du fauteuil est encore en cours
 * Permettre à l'utilisateur de mettre à jour son micro-contrôleur directement à partir de l'application
 
 * Création d'un prototype ergonomique, compacte et facile d'installation.
+
+* Création de trois modele à budgets differents. 
+** Un

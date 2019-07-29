@@ -39,9 +39,11 @@ celle-ci, augmenter ou diminuer la lumière ou bien changer la couleur de la ban
 En fonction de l'avancement du projet, nous pourrons ajouter d'autres amélioration, options, composant et objets connectés sur notre set-up
 
 #### Composants suggerés :
+Au départ, nous avons imaginé le set-up avec des composants facilement trouvable, manipulable et programmable.
 * LED : ESP32, BANDE LED, Capteurs couleur de lumière, cable USB, kit de connection (fil) ;
 * Fauteuil : housse massage ou moteurs vibrants, enceinte bluetooth, ESP32, capteurs sonores; 
 
+## TRAVAIL RÉALISÉ
 
 
 	  

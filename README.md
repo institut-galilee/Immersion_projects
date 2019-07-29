@@ -73,7 +73,7 @@ La conception du fauteuil est encore en cours
 
 #### Evolution
 
-* Passage à l'ESP32 qui serait un gain en coût, en énergie et en taille.
+* Passage à l'ESP32 qui serait un gain en coût, énergie et de taille.
 
 * Permettre à l'utilisateur de mettre à jour son micro-contrôleur directement à partir de l'application
 

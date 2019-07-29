@@ -46,6 +46,7 @@ Au départ, nous avons imaginé le set-up avec des composants facilement trouvab
 ## TRAVAIL RÉALISÉ
 
 ### Analyse de l'éxistant
+Au cours de notre analyse, nous avons pris connaissance de la plupart des technologies se rapprochant de nos objectifs. La plupart d'entre elles sont intégré à l'interiure même d'un téléviseur et d'autres si y connecte via HDMI ou USB. 
 
 ### Conception du prototype
 

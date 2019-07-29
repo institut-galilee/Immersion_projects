@@ -56,9 +56,15 @@ La conception de la LED a connu 3 versions :
 
 * Version Beta : Le calibrage des couleurs est intégré afin de reproduire le plus fidèlement possible ce qui est émis par n'importe quel écran LED ou LCD (d'autres test pourront permettre une adaptation polyvalente).
 
-* Version proto : Un ajout du Bluetooth liant application et micro-contrôleur afin de faciliter l'interaction hommes-machine.  
+* Version proto : Un ajout du Bluetooth liant application et micro-contrôleur afin de faciliter l'expérience utilisateur.  
 
 #### Application
+
+La conception de l'application a connu 2 versions :
+
+* Version 0.1 : Une interface simple permettant de contrôler les couleurs de la LED via Bluetooth.
+
+* Version 0.2 : Ajout d'une interface permettant le calibrage du capteur directement via l'application en suivant des intructions détaillées. 
 
 ### Perspectives
 	  

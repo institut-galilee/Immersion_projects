@@ -64,7 +64,7 @@ La conception de l'application a connu 2 versions :
 
 * Version 0.1 : Une interface simple permettant de contrôler les couleurs de la LED via Bluetooth.
 
-* Version 0.2 : Ajout d'une interface permettant le calibrage du capteur directement via l'application en suivant des intructions détaillées. 
+* Version 0.2 : Ajout d'une interface permettant le calibrage du capteur directement via l'application en suivant des intructions détaillées. Création de théme comme fondue, gradiant et guirlande.
 
 ### Perspectives
 

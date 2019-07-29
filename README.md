@@ -75,6 +75,6 @@ La conception du fauteuil est encore en cours
 
 * Passage à l'ESP32 qui serait un gain en coût, en énergie et en taille.
 
-* Permettre à l'utilisateur de mettre a jour son micro-contrôleur directement a partir de l'application
+* Permettre à l'utilisateur de mettre à jour son micro-contrôleur directement à partir de l'application
 
 * Création d'un prototype ergonomique, compacte et facile d'installation.

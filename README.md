@@ -46,7 +46,7 @@ Au départ, nous avons imaginé le set-up avec des composants facilement trouvab
 ## TRAVAIL RÉALISÉ
 
 ### Analyse de l'éxistant
-Au cours de notre analyse, nous avons pris connaissance de la plupart des technologies se rapprochant de nos objectifs. Pour la LED, les principales technologies sont intégré à l'interieur même d'un téléviseur et d'autres si y connecte via HDMI ou USB. Toute les recherches effectuées, nous amené a la conclusion que notre méthode n'as pas encore etait exploré.  
+Au cours de notre analyse, nous avons pris connaissance de la plupart des technologies se rapprochant de nos objectifs. Pour la LED, les principales technologies sont intégré à l'interieur même d'un téléviseur et d'autres si y connecte via HDMI ou USB. Toute les recherches effectuées, nous amené a la conclusion que notre méthode n'as pas encore été exploré.  
 
 ### Conception du prototype
 

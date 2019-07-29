@@ -67,11 +67,8 @@ La conception de l'application a connu 2 versions :
 * Version 0.2 : Ajout d'une interface permettant le calibrage du capteur directement via l'application en suivant des intructions détaillées. 
 
 ### Perspectives
-	  
-#### Fauteuil
-La conception du fauteuil est encore en cours
 
-#### Evolution
+* La conception d'un fauteuil qui est encore en cours
 
 * Passage à l'ESP32 qui serait un gain en coût, énergie et de taille.
 
@@ -79,5 +76,12 @@ La conception du fauteuil est encore en cours
 
 * Création d'un prototype ergonomique, compacte et facile d'installation.
 
-* Création de trois modele à budgets differents. 
-** Un
+* Création de trois modèles à budgets différents. Un modèle composé d'un capteur pour une immersion se basant sur la couleur prédominante. Un second avec quatre capteurs permettant une immersion plus poussée utilisant l'adressabilité de la LED et reproduisant les couleurs des coins de l’écran. Un dernier composé de tout les capteur nécessaire a l'immersion reproduisant les couleurs point à point.
+
+* Une meilleure interface de l'application
+
+* Rendre la calibration plus accessible à l'utilisateur
+
+* D'autres objets garantissant une immersion toujours plus poussée
+
+* Connecter l'ensemble du set-up à un assistant vocal

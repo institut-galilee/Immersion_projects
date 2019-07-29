@@ -40,7 +40,7 @@ En fonction de l'avancement du projet, nous pourrons ajouter d'autres améliorat
 
 #### Composants suggerés :
 Au départ, nous avons imaginé le set-up avec des composants facilement trouvable, manipulable et programmable.
-* LED : ESP32, BANDE LED, Capteurs couleur de lumière, cable USB, kit de connection (fil) ;
+* LED : ESP32, BANDE LED adressable, Capteurs couleur de lumière, cable USB, kit de connection (fil) ;
 * Fauteuil : housse massage ou moteurs vibrants, enceinte bluetooth, ESP32, capteurs sonores; 
 
 ## TRAVAIL RÉALISÉ
@@ -68,4 +68,13 @@ La conception de l'application a connu 2 versions :
 
 ### Perspectives
 	  
-	  
+#### Fauteuil
+La conception du fauteuil est encore en cours
+
+#### Evolution
+
+* Passage à l'ESP32 qui serait un gain en coût, en énergie et en taille.
+
+* Permettre à l'utilisateur de mettre a jour son micro-contrôleur directement a partir de l'application
+
+* Création d'un prototype ergonomique, compacte et facile d'installation.
